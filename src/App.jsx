@@ -73,44 +73,44 @@ function App() {
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       <Routes>
-        <Route path="/" element={user ? <Home /> : <Navigate to="/auth" />} />
+        <Route path="/" element={user ? <Home /> : <Navigate to="/auth" replace />} />
         <Route
-          path="/dc"
+          path="/DC"
           element={
-            user ? <DC fetchData={fetchData} /> : <Navigate to="/auth" />
+            user ? <DC fetchData={fetchData} /> : <Navigate to="/auth" replace />
           }
         />
         <Route
-          path="/ledger"
+          path="/Ledger"
           element={
-            user ? <Ledger entries={entries} /> : <Navigate to="/auth" />
+            user ? <Ledger entries={entries} /> : <Navigate to="/auth" replace />
           }
         />
         <Route
-          path="/profiles"
+          path="/Profiles"
           element={
             user ? (
               <Profiles profile={profiles} entries={entries} />
             ) : (
-              <Navigate to="/auth" />
+              <Navigate to="/auth" replace />
             )
           }
         />
         <Route
-          path="/profiles/:id"
+          path="/Profiles/:id"
           element={
             user ? (
               <ProfileInfo profile={profiles} entries={entries} />
             ) : (
-              <Navigate to="/auth" />
+              <Navigate to="/auth"  replace/>
             )
           }
         />
         <Route
-          path="/addparty"
-          element={user ? <AddParty /> : <Navigate to="/auth" />}
+          path="/Addparty"
+          element={user ? <AddParty /> : <Navigate to="/auth" replace />}
         />
-        <Route path="/auth" element={user ? <Navigate to="/" /> : <Auth />} />
+        <Route path="/Auth" element={user ? <Navigate to="/" replace /> : <Auth />} />
       </Routes>
     </AuthContext.Provider>
   );
