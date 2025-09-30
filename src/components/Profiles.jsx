@@ -39,9 +39,11 @@ const API_URL=import.meta.env.VITE_API_URL
         padding: "1rem",
       }}
     >
+       <h1>Profiles</h1>
       <button className="bckbtn" type="button" onClick={() => navigate(-1)}>
         ← Back
       </button>
+     
       <br />
       <input
         className="sticky"

@@ -14,9 +14,9 @@ function ProfileInfo({ profile, entries }) {
     (e) => String(e.dcNo) === String(user.dcNo)
   );
   const total = matchedEntries.reduce(
-  (sum, entry) => sum + Number(entry.amount || 0),
-  0
-);
+    (sum, entry) => sum + Number(entry.amount || 0),
+    0
+  );
   const balance = Number(user.loanAmount) - total;
   if (!user) {
     return (
@@ -34,10 +34,12 @@ function ProfileInfo({ profile, entries }) {
     <div
       style={{
         backgroundImage: `url(${dc})`,
-        backgroundSize: "contain",
-        backgroundPosition: "center",
+        backgroundSize:"cover",
+        backgroundPosition: "center", // centers the image
+        backgroundRepeat: "no-repeat", // prevents tiling
       }}
     >
+      <h1>ProfileInfo</h1>
       <button
         className="bckbtn"
         style={{ marginTop: "10px", marginLeft: "10px" }}
@@ -48,21 +50,7 @@ function ProfileInfo({ profile, entries }) {
 
       <div className="profile-details">
         {/* Profile Card */}
-        <div
-          className="profile-card"
-          style={{
-            width: "40%",
-            maxWidth: "520px",
-            backgroundImage:
-              "linear-gradient(135deg, #fefefeff 0%, #ea8eca94 35%, #7b9bdca6 70%, #c983ec90 100%)",
-            borderRadius: "14px",
-            padding: "22px",
-            border: "1px solid rgba(15, 23, 42, 0.53)",
-            boxShadow: "0 6px 20px rgba(9, 179, 236, 1)",
-            fontFamily: "Inter, Segoe UI, Roboto, sans-serif",
-            color: "#111827",
-          }}
-        >
+        <div className="profileInfo-card">
           <img
             src={userpng}
             alt="Profile"
@@ -110,7 +98,7 @@ function ProfileInfo({ profile, entries }) {
               fontWeight: 500,
             }}
           >
-            Amount: <span style={{ fontWeight: 600 }}>{user.loanAmount}</span>
+            Amount: <span style={{ fontWeight: 600 }}>₹ {user.loanAmount}</span>
           </h4>
           <h4
             style={{
@@ -183,7 +171,7 @@ function ProfileInfo({ profile, entries }) {
         </div>
 
         {/* Table Section */}
-        <div style={{ width: "60%" }}>
+        <div style={{ width: "80%" }}>
           <strong>Entries:</strong>
 
           {matchedEntries.length > 0 ? (
@@ -196,13 +184,13 @@ function ProfileInfo({ profile, entries }) {
                 textAlign: "center",
               }}
             >
-              <thead>
+              <thead style={{ border: "3px solid #333" }}>
                 <tr>
                   <th>Amount (₹)</th>
                   <th>Date</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody style={{ border: "3px solid #333" }}>
                 {matchedEntries.map((e, i) => (
                   <tr key={i}>
                     <td>{e.amount}</td>

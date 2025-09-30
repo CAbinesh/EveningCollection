@@ -78,7 +78,7 @@ function AddParty() {
     <div
       style={{
         backgroundImage: `url(${dc})`,
-        backgroundSize: "contain",
+        backgroundSize: "cover",
         backgroundPosition: "center",
         minHeight: "100vh",
         padding: "1rem",
@@ -96,39 +96,36 @@ function AddParty() {
       <div className="form1">
         <form onSubmit={handleSubmit}>
           {/* Name Input */}
-          <h1 style={{ justifyContent: "center", display: "flex" }}>
+          <h1 style={{ justifyContent: "center", display: "flex",color:"red" }}>
             ADD USER
           </h1>
+          <label>Name:</label>
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Name"
+            placeholder="Enter Name"
             required
           />
-          <br />
           {/* DC DcNo */}
+          <label>DC.No:</label>
           <input
             type="text"
             value={dcNo}
             onChange={(e) => setDcNo(e.target.value)}
-            placeholder="DC.NO"
+            placeholder="Enter DC.NO"
             required
           />
-          <br />
           {/* Start Date */}
           <label>Start Date:</label>
-          <br />
           <input
             type="date"
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
             required
           />
-          <br />
           {/* End Date */}
           <label>End Date:</label>
-          <br />
           <input
             type="date"
             value={endDate}
@@ -136,51 +133,65 @@ function AddParty() {
             readOnly
             required
           />
-          <br />
           {/* loanamount */}
-           <label>Amount:</label>
-          <br />
+          <label>Amount:</label>
           <input
             type="number"
             value={loanAmount}
             onChange={(e) => setLoanAmount(e.target.value)}
+            placeholder="Enter Amount"
             required
           />
-          <br />
           {/* intereset */}
-           <label>Interest %:</label>
-          <br />
+          <label>Interest %:</label>
           <input
             type="number"
             value={interest}
             onChange={(e) => setInterest(e.target.value)}
+            placeholder="Enter Interest Amount"
             required
           />
-          <br />
           {/* Radio Options */}
-          <label style={{ marginLeft: "55px" }}>Select Duration:</label>
-          <br />
-          <input
-            style={{ marginLeft: "55px" }}
-            type="radio"
-            name="option"
-            value="100days"
-            onChange={handleChange}
-            checked={selected === "100days"}
-          />{" "}
-          100 Days
-          <br />
-          <input
-            style={{ marginLeft: "55px" }}
-            type="radio"
-            name="option"
-            value="5months"
-            onChange={handleChange}
-            checked={selected === "5months"}
-          />{" "}
-          5 Months
-          <br />
-          <br />
+          {/* Radio Options */}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              marginTop: "10px",
+            }}
+          >
+            <label style={{ marginBottom: "8px" }}>Select Duration:</label>
+            <div
+              style={{
+                display: "flex",
+                gap: "20px",
+                justifyContent: "flex-start",
+              }}
+            >
+              <label>
+                <input
+                  type="radio"
+                  name="option"
+                  value="100days"
+                  onChange={handleChange}
+                  checked={selected === "100days"}
+                />{" "}
+                100 Days
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="option"
+                  value="5months"
+                  onChange={handleChange}
+                  checked={selected === "5months"}
+                />{" "}
+                5 Months
+              </label>
+            </div>
+          </div>
+
           {/* Buttons */}
           <div className="buttonss">
             <button type="submit">Submit</button>

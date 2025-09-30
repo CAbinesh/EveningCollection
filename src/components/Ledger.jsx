@@ -38,7 +38,7 @@ const groupedEntries = filteredEntries.reduce((acc, entry) => {
     <div
       style={{
         backgroundImage: `url(${dc})`,
-        backgroundSize: "contain",
+        backgroundSize: "cover",
         backgroundPosition: "center",
         minHeight: "100vh",
         padding: "1rem",
