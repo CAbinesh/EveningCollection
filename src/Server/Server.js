@@ -34,16 +34,13 @@ const JWT_TOKEN = process.env.JWT_SECRET || "supersecret";
 
 // ===== MongoDB =====
 try {
-  await mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+  await mongoose.connect(process.env.MONGO_URI);
   console.log("MongoDB Connected ✅");
 } catch (err) {
   console.error("MongoDB Connection Error ❌:", err.message);
   process.exit(1);
 }
-
+app.set("trust proxy", 1);
 // ===== Rate limiter =====
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
