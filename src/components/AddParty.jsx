@@ -9,37 +9,41 @@ function AddParty() {
   const [dcNo, setDcNo] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [loanAmount, setLoanAmount] = useState("");
+  const [interest, setInterest] = useState("");
   // const [image, setImage] = useState("/user.png"); // default image path from public folder
   const [selected, setSelected] = useState("");
-const API_URL=import.meta.env.VITE_API_URL
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!name || !dcNo||!endDate) {
+    if (!name || !dcNo || !endDate) {
       alert("Please fill in all fields");
       return;
     }
     try {
-      const res=await fetch(`${API_URL}/api/data`,{
-        method:'POST',
-        headers:{"content-type":"application/json"},
-        body:JSON.stringify({
-           name,
+      const res = await fetch(`${API_URL}/api/data`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          name,
           dcNo,
           startDate,
           endDate,
+          loanAmount,
+          interest,
         }),
-         credentials: "include"
-      })
+        credentials: "include",
+      });
       if (!res.ok) {
-      const errData = await res.json();
-      alert(errData.error ||"Something went wrong!");
-      return;
-    }
+        const errData = await res.json();
+        alert(errData.error || "Something went wrong!");
+        return;
+      }
     } catch (error) {
-      console.log('err in handlesubmit',error)
+      console.log("err in handlesubmit", error);
     }
     alert("Submited Sucessfully");
 
@@ -48,6 +52,8 @@ const API_URL=import.meta.env.VITE_API_URL
     setStartDate("");
     setEndDate("");
     setSelected("");
+    setLoanAmount("");
+    setInterest("");
   };
 
   const handleChange = (e) => {
@@ -128,6 +134,26 @@ const API_URL=import.meta.env.VITE_API_URL
             value={endDate}
             onChange={(e) => setEndDate(e.target.value)}
             readOnly
+            required
+          />
+          <br />
+          {/* loanamount */}
+           <label>Amount:</label>
+          <br />
+          <input
+            type="number"
+            value={loanAmount}
+            onChange={(e) => setLoanAmount(e.target.value)}
+            required
+          />
+          <br />
+          {/* intereset */}
+           <label>Interest %:</label>
+          <br />
+          <input
+            type="number"
+            value={interest}
+            onChange={(e) => setInterest(e.target.value)}
             required
           />
           <br />
