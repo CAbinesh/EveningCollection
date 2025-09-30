@@ -61,6 +61,7 @@ const API_URL=import.meta.env.VITE_API_URL
     </div>
 
     <form onSubmit={handleSubmit}>
+      <h2 style={{display:"flex",justifyContent:"center"}}>{isLogin? "Login":"Signup"}</h2>
       <input
         type="email"
         value={email}

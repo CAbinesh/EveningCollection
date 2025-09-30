@@ -55,6 +55,7 @@ function AddParty() {
     setLoanAmount("");
     setInterest("");
   };
+  
 
   const handleChange = (e) => {
     const option = e.target.value;
@@ -116,27 +117,10 @@ function AddParty() {
             placeholder="Enter DC.NO"
             required
           />
-          {/* Start Date */}
-          <label>Start Date:</label>
-          <input
-            type="date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-            required
-          />
-          {/* End Date */}
-          <label>End Date:</label>
-          <input
-            type="date"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
-            readOnly
-            required
-          />
           {/* loanamount */}
           <label>Amount:</label>
           <input
-            type="number"
+            type="text"
             value={loanAmount}
             onChange={(e) => setLoanAmount(e.target.value)}
             placeholder="Enter Amount"
@@ -145,10 +129,18 @@ function AddParty() {
           {/* intereset */}
           <label>Interest %:</label>
           <input
-            type="number"
+            type="text"
             value={interest}
             onChange={(e) => setInterest(e.target.value)}
             placeholder="Enter Interest Amount"
+            required
+          />
+          {/* Start Date */}
+          <label>Start Date:</label>
+          <input
+            type="date"
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
             required
           />
           {/* Radio Options */}
@@ -191,6 +183,15 @@ function AddParty() {
               </label>
             </div>
           </div>
+          {/* End Date */}
+          <label>End Date:</label>
+          <input
+            type="date"
+            value={endDate}
+            onChange={(e) => setEndDate(e.target.value)}
+            readOnly
+            required
+          />
 
           {/* Buttons */}
           <div className="buttonss">

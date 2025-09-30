@@ -6,6 +6,8 @@ import dc from "../assets/dc.png";
 function ProfileInfo({ profile, entries }) {
   const { id } = useParams();
   const navigate = useNavigate();
+  const API_URL = import.meta.env.VITE_API_URL;
+
   // Find the user by their unique identifier (dcNo)
   const user = profile.find((p) => String(p.dcNo) === String(id));
 
@@ -29,20 +31,59 @@ function ProfileInfo({ profile, entries }) {
   const today = new Date();
   const endDate = new Date(user.endDate);
   const remaindays = Math.ceil((endDate - today) / (1000 * 60 * 60 * 24));
+  const handleDelete = async (id) => {
+    try {
+      // Download Word document
+      const response = await fetch(`${API_URL}/api/download-doc/${id}`, {
+        credentials: "include",
+      });
+      if (!response.ok) throw new Error("Failed to download Word file");
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+
+      const disposition = response.headers.get("Content-Disposition");
+      let filename = "userdata.doc";
+      if (disposition && disposition.includes("filename=")) {
+        filename = disposition.split("filename=")[1].replace(/"/g, "");
+      }
+
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+
+      // Delete profile after download
+      const delResponse = await fetch(`${API_URL}/api/data/${id}`, {
+        method: "DELETE",
+        credentials: "include",
+      });
+      if (!delResponse.ok) throw new Error("Delete failed");
+
+      alert("User data downloaded as Word and account deleted!");
+      navigate(-1);
+    } catch (err) {
+      console.error(err);
+      alert(err.message);
+    }
+  };
 
   return (
     <div
       style={{
         backgroundImage: `url(${dc})`,
-        backgroundSize:"cover",
+        backgroundSize: "cover",
         backgroundPosition: "center", // centers the image
-        backgroundRepeat: "no-repeat", // prevents tiling
+        minHeight: "100vh",
       }}
     >
       <h1>ProfileInfo</h1>
       <button
         className="bckbtn"
-        style={{ marginTop: "10px", marginLeft: "10px" }}
+        style={{  marginLeft: "10px" }}
         onClick={() => navigate(-1)}
       >
         Go Back
@@ -152,6 +193,7 @@ function ProfileInfo({ profile, entries }) {
           </h4>
 
           <button
+            onClick={() => handleDelete(user._id)}
             style={{
               marginTop: "18px",
               width: "100%",

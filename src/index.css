@@ -404,8 +404,8 @@ button:hover {
 
 /* Override for responsive or special case */
 @media screen and (max-width: 768px) {
-  .profile-card {
-    width: 40%;
+  .profileInfo-card {
+    width: 50%;
     height: auto;
   }
 }

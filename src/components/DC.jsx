@@ -46,7 +46,7 @@ const API_URL=import.meta.env.VITE_API_URL
       className="form-container"
       style={{
         backgroundImage: `url(${dc})`,
-        backgroundSize: "contain",
+        backgroundSize: "cover",
         backgroundPosition: "center",
         minHeight: "100vh",
         padding: "1rem",
@@ -83,6 +83,7 @@ const API_URL=import.meta.env.VITE_API_URL
             type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
+            placeholder="Enter Date"
             required
           />
           <br />

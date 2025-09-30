@@ -22,7 +22,8 @@ app.use(cookieParser());
 // ===== CORS =====
 // In Render production, frontend URL must be correct
 const corsOptions = {
-  origin: "https://eveningcollectionfront.onrender.com",
+  origin: 
+  "https://eveningcollectionfront.onrender.com",
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
@@ -202,14 +203,55 @@ app.put("/api/data/:id", middleware, authLimiter, async (req, res) => {
   }
 });
 
-app.delete("/api/data/:id", middleware, authLimiter, async (req, res) => {
+// GET Word document
+app.get("/api/download-doc/:id", middleware, async (req, res) => {
   try {
-    await Profile.findByIdAndDelete(req.params.id);
-    res.json({ success: true });
+    const profile = await Profile.findById(req.params.id).lean();
+    if (!profile) return res.status(404).send("Profile not found");
+
+
+    const htmlContent = `
+      <html>
+      <head><meta charset="UTF-8"><title>${profile.name} - User Data</title></head>
+      <body>
+        <h1>${profile.name}</h1>
+        <p>DC.No: ${profile.dcNo}</p>
+        <p>Amount: ₹${profile.loanAmount}</p>
+        <p>Interest: ${profile.interest}</p>
+        <p>Start Date: ${new Date(profile.startDate).toLocaleDateString()}</p>
+        <p>End Date: ${new Date(profile.endDate).toLocaleDateString()}</p>
+        <h2>Entries</h2>
+        <ul>
+          ${(profile.dcEntries || []).map(
+            e => `<li>₹${e.amount} on ${new Date(e.date).toLocaleDateString()}</li>`
+          ).join("")}
+        </ul>
+      </body>
+      </html>
+    `;
+
+    const safeName = profile.name.replace(/\s+/g, "_") + ".doc";
+    res.setHeader("Content-Disposition", `attachment; filename="${safeName}"`);
+    res.setHeader("Content-Type", "application/msword");
+
+    res.send(htmlContent);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error(err);
+    res.status(500).send("Server error");
   }
 });
+
+// DELETE profile
+app.delete("/api/data/:id", middleware, authLimiter, async (req, res) => {
+  try {
+    const deleted = await Profile.findByIdAndDelete(req.params.id);
+    if (!deleted) return res.status(404).json({ message: "Profile not found" });
+    res.json({ message: "Profile deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 
 // ===== Start server =====
 const PORT = process.env.PORT || 5000;

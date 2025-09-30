@@ -33,7 +33,7 @@ const API_URL=import.meta.env.VITE_API_URL
     <div
       style={{
         backgroundImage: `url(${dc})`,
-        backgroundSize: "contain",
+        backgroundSize: "cover",
         backgroundPosition: "center",
         minHeight: "100vh",
         padding: "1rem",
