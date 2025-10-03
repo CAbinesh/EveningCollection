@@ -8,7 +8,7 @@ import helmet from "helmet";
 import rateLimit from "express-rate-limit";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-
+import { Document, Packer, Paragraph, TextRun } from "docx";
 import User from "../models/User.js";
 import Profile from "../models/Profile.js";
 
@@ -22,7 +22,8 @@ app.use(cookieParser());
 // ===== CORS =====
 // In Render production, frontend URL must be correct
 const corsOptions = {
-  origin: "https://eveningcollectionfront.onrender.com",
+  origin: 
+  "https://eveningcollectionfront.onrender.com",
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
@@ -208,32 +209,51 @@ app.get("/api/download-doc/:id", middleware, async (req, res) => {
     const profile = await Profile.findById(req.params.id).lean();
     if (!profile) return res.status(404).send("Profile not found");
 
+    // Create document
+    const doc = new Document({
+      sections: [
+        {
+          properties: {},
+          children: [
+            new Paragraph({
+              children: [
+                new TextRun({ text: profile.name, bold: true, size: 32 }),
+              ],
+            }),
+            new Paragraph(`DC.No: ${profile.dcNo}`),
+            new Paragraph(`Amount: ₹${profile.loanAmount}`),
+            new Paragraph(`Interest: ${profile.interest}%`),
+            new Paragraph(`Start Date: ${new Date(profile.startDate).toLocaleDateString()}`),
+            new Paragraph(`End Date: ${new Date(profile.endDate).toLocaleDateString()}`),
+            new Paragraph(" "),
+            new Paragraph({ text: "Entries", bold: true, size: 28 }),
+            ...(profile.dcEntries || []).map(
+              (e) =>
+                new Paragraph(
+                  `₹${e.amount} on ${new Date(e.date).toLocaleDateString()}`
+                )
+            ),
+          ],
+        },
+      ],
+    });
 
-    const htmlContent = `
-      <html>
-      <head><meta charset="UTF-8"><title>${profile.name} - User Data</title></head>
-      <body>
-        <h1>${profile.name}</h1>
-        <p>DC.No: ${profile.dcNo}</p>
-        <p>Amount: ₹${profile.loanAmount}</p>
-        <p>Interest: ${profile.interest}</p>
-        <p>Start Date: ${new Date(profile.startDate).toLocaleDateString()}</p>
-        <p>End Date: ${new Date(profile.endDate).toLocaleDateString()}</p>
-        <h2>Entries</h2>
-        <ul>
-          ${(profile.dcEntries || []).map(
-            e => `<li>₹${e.amount} on ${new Date(e.date).toLocaleDateString()}</li>`
-          ).join("")}
-        </ul>
-      </body>
-      </html>
-    `;
+    // Generate buffer
+    const buffer = await Packer.toBuffer(doc);
 
-    const safeName = profile.name.replace(/\s+/g, "_") + ".doc";
-    res.setHeader("Content-Disposition", `attachment; filename="${safeName}"`);
-    res.setHeader("Content-Type", "application/msword");
+    const safeName =
+      profile.name.replace(/\s+/g, "_") + ".docx";
 
-    res.send(htmlContent);
+    res.setHeader(
+      "Content-Disposition",
+      `attachment; filename="${safeName}"`
+    );
+    res.setHeader(
+      "Content-Type",
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    );
+
+    res.send(buffer);
   } catch (err) {
     console.error(err);
     res.status(500).send("Server error");

@@ -31,45 +31,58 @@ function ProfileInfo({ profile, entries }) {
   const today = new Date();
   const endDate = new Date(user.endDate);
   const remaindays = Math.ceil((endDate - today) / (1000 * 60 * 60 * 24));
-  const handleDelete = async (id) => {
-    try {
-      // Download Word document
-      const response = await fetch(`${API_URL}/api/download-doc/${id}`, {
-        credentials: "include",
-      });
-      if (!response.ok) throw new Error("Failed to download Word file");
+ const handleDelete = async (id) => {
+  try {
+    // 1. Download Word document
+    const response = await fetch(`${API_URL}/api/download-doc/${id}`, {
+      credentials: "include",
+    });
+    if (!response.ok) throw new Error("Failed to download Word file");
 
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-
-      const disposition = response.headers.get("Content-Disposition");
-      let filename = user.name+".docx";
-      if (disposition && disposition.includes("filename=")) {
-        filename = disposition.split("filename=")[1].replace(/"/g, "");
-      }
-
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      window.URL.revokeObjectURL(url);
-
-      // Delete profile after download
-      const delResponse = await fetch(`${API_URL}/api/data/${id}`, {
-        method: "DELETE",
-        credentials: "include",
-      });
-      if (!delResponse.ok) throw new Error("Delete failed");
-
-      alert("User data downloaded as Word and account deleted!");
-      navigate(-1);
-    } catch (err) {
-      console.error(err);
-      alert(err.message);
+    // Ensure correct MIME type
+    const contentType = response.headers.get("Content-Type");
+    if (
+      !contentType ||
+      !contentType.includes(
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      )
+    ) {
+      throw new Error("Invalid file format received from server");
     }
-  };
+
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+
+    // 2. Set filename (from server or fallback to username.docx)
+    const disposition = response.headers.get("Content-Disposition");
+    let filename = `${user.name}.docx`;
+    if (disposition && disposition.includes("filename=")) {
+      filename = disposition.split("filename=")[1].replace(/"/g, "");
+    }
+
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    window.URL.revokeObjectURL(url);
+
+    // 3. Delete profile AFTER download completes
+    const delResponse = await fetch(`${API_URL}/api/data/${id}`, {
+      method: "DELETE",
+      credentials: "include",
+    });
+    if (!delResponse.ok) throw new Error("Delete failed");
+
+    alert("✅ User data downloaded as Word and account deleted!");
+    navigate(-1);
+  } catch (err) {
+    console.error(err);
+    alert("⚠️ " + err.message);
+  }
+};
+
 
   return (
     <div
