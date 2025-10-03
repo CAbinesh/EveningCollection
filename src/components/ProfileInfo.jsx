@@ -28,7 +28,7 @@ function ProfileInfo({ profile, entries }) {
     );
   }
 
-  const today = new Date();
+  const today = new Date(user.startDate);
   const endDate = new Date(user.endDate);
   const remaindays = Math.ceil((endDate - today) / (1000 * 60 * 60 * 24));
   const handleDelete = async (id) => {
