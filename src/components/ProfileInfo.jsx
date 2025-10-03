@@ -201,7 +201,7 @@ function ProfileInfo({ profile, entries }) {
           >
             Days left:{" "}
             <span style={{ fontWeight: 700 }}>
-              {remaindays > 0 ? remaindays : "Expired"}
+              {remaindays > 0 ? remaindays : -Math.abs(remaindays)}
             </span>
           </h4>
 
