@@ -22,7 +22,6 @@ app.use(cookieParser());
 // ===== CORS =====
 // In Render production, frontend URL must be correct
 const corsOptions = {
-  // origin: "http://localhost:5173",
   origin: "https://eveningcollectionfront.onrender.com",
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
