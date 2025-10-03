@@ -28,7 +28,7 @@ function ProfileInfo({ profile, entries }) {
     );
   }
 
-  const today = new Date(user.startDate);
+  const today = new Date();
   const endDate = new Date(user.endDate);
   const remaindays = Math.ceil((endDate - today) / (1000 * 60 * 60 * 24));
   const handleDelete = async (id) => {
@@ -45,7 +45,7 @@ function ProfileInfo({ profile, entries }) {
       a.href = url;
 
       const disposition = response.headers.get("Content-Disposition");
-      let filename = "userdata.doc";
+      let filename = user.name+".docx";
       if (disposition && disposition.includes("filename=")) {
         filename = disposition.split("filename=")[1].replace(/"/g, "");
       }
