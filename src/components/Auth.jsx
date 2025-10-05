@@ -51,12 +51,12 @@ const API_URL=import.meta.env.VITE_API_URL
     <div className="auth-container">
   <div className="auth-form">
     {/* Logo wrapper */}
-    <div style={{ display: "flex", justifyContent: "center", marginBottom: "20px" }}>
+    <div style={{ display: "flex", justifyContent: "center"}}>
       <img
         className="logo"
         src={Home}
         alt="My App Logo"
-        style={{ height: "150px" }}
+        style={{ height: "150px",width:"200px" }}
       />
     </div>
 

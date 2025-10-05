@@ -51,9 +51,27 @@ label :hover{
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 50vh;
+  
   background-color: white;
 }
+
+.container video {
+  width: 250px;
+  height: 250px;
+  object-fit: cover; /* optional: maintain aspect ratio */
+}
+
+@media screen and (max-width: 640px) {
+  .container {
+    width: 100%; /* take full width of parent */
+  }
+
+  .container video {
+    width: 100%; /* scale video down */
+    height: auto; /* keep aspect ratio */
+  }
+}
+
 
 .form {
   display: flex;

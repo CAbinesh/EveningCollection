@@ -1,20 +1,21 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import Preview from "../assets/Preview.png";
-import { AuthContext } from "../App"; // ✅ import AuthContext
+import PreviewVideo from "../assets/Preview.mp4"; // ✅ import video
+import { AuthContext } from "../App";
 
 function Home() {
   const navigate = useNavigate();
-  const { setUser } = useContext(AuthContext); // ✅ get setUser from context
-const API_URL=import.meta.env.VITE_API_URL
+  const { setUser } = useContext(AuthContext);
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const handleLogout = async () => {
     try {
       await fetch(`${API_URL}/api/logout`, {
         method: "POST",
         credentials: "include",
       });
-      setUser(null); // clear user state
-      navigate("/auth"); // redirect to login
+      setUser(null);
+      navigate("/auth");
     } catch (err) {
       console.error("Logout failed:", err);
     }
@@ -22,8 +23,12 @@ const API_URL=import.meta.env.VITE_API_URL
 
   return (
     <div>
-      <div className="container">
-        <img src={Preview} alt="" width={350} height={350} />
+      <div className="container" >
+        <video autoPlay playsInline 
+    disablePictureInPicture  muted>
+          <source src={PreviewVideo} />
+          Your browser does not support the video tag.
+        </video>
       </div>
       <div className="maincontainer">
         <div
@@ -55,7 +60,7 @@ const API_URL=import.meta.env.VITE_API_URL
           Add User
         </div>
         <div
-          style={{ backgroundColor: "red", borderRadius: "15px",color:"red" }}
+          style={{ backgroundColor: "red", borderRadius: "15px", color: "red" }}
           className="btn"
           onClick={handleLogout}
         >
