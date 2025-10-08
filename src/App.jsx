@@ -70,20 +70,12 @@ function App() {
 
  if (loading)
   return (
-    <div className="loader-wrapper">
-      <span className="loader-letter">G</span>
-      <span className="loader-letter">e</span>
-      <span className="loader-letter">n</span>
-      <span className="loader-letter">e</span>
-      <span className="loader-letter">r</span>
-      <span className="loader-letter">a</span>
-      <span className="loader-letter">t</span>
-      <span className="loader-letter">i</span>
-      <span className="loader-letter">n</span>
-      <span className="loader-letter">g</span>
-
-      <div className="loader"></div>
-    </div>
+   
+<svg class="loader" viewBox="0 0 100 100">
+    <circle class="moon moon-back"></circle>
+    <circle class="planet"></circle>
+    <circle class="moon moon-front"></circle>
+</svg>
   );
 
 
