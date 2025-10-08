@@ -97,7 +97,7 @@ function AddParty() {
       <div className="form1">
         <form onSubmit={handleSubmit}>
           {/* Name Input */}
-          <h1 style={{ justifyContent: "center", display: "flex",color:"red",fontFamily:"sans-serif" }}>
+          <h1 className="honk-text" style={{ justifyContent: "center", display: "flex", }}>
             ADD USER
           </h1>
           <label>Name:</label>

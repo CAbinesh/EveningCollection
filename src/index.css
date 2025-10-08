@@ -1,3 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Honk&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,100..900;1,100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gasoek+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nabla&display=swap');
+.honk-text {
+  font-family: "Honk", system-ui;
+  font-optical-sizing: auto;
+  font-size: 60px;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "MORF" 15, "SHLN" 50;
+}
+
 :root {
   --electric-blue: #1e90ff;
   --bright-cyan: #00ffff;
@@ -10,10 +24,23 @@
 }
 body {
   background-color: var(--light-silver);
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: black;
+  font-family: "Saira", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
   margin: 0;
   padding: 0;
+}
+input,
+textarea,
+select,
+button {
+  font-family: "Saira", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
 }
 label {
   color: rgb(10, 1, 1);
@@ -168,14 +195,14 @@ input[type="date"]:focus {
   background-image: none;
   border-style: none;
   box-sizing: border-box;
-  color: #fff;
   cursor: pointer;
   display: inline-block;
   flex-direction: row;
   flex-shrink: 0;
-  font-family: Eina01, sans-serif;
-  font-size: 16px;
-  font-weight: 800;
+  font-family: "Bungee Spice", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 30px;
   justify-content: center;
   line-height: 24px;
   margin: 0;
@@ -210,7 +237,7 @@ input[type="date"]:focus {
 }
 
 .btn:before {
-  background-image: linear-gradient(92.83deg, #ff7426 0, #f93a13 100%);
+  background-image: linear-gradient(92.83deg, #ff265c 0, #8a13f9 100%);
   content: "";
   display: block;
   height: 100%;
@@ -224,7 +251,7 @@ input[type="date"]:focus {
 
 .btn:after {
   background-color: initial;
-  background-image: linear-gradient(#541a0f 0, #0c0d0d 100%);
+  background-image: linear-gradient(#0f1154 , #0c0d0d 100%);
   bottom: 4px;
   content: "";
   display: block;
@@ -240,8 +267,8 @@ input[type="date"]:focus {
 .btn:hover:not(:disabled):before {
   background: linear-gradient(
     92.83deg,
-    rgb(255, 116, 38) 0%,
-    rgb(249, 58, 19) 100%
+    rgb(10, 10, 10) 50%,
+    rgb(17, 34, 38) 100%
   );
 }
 
@@ -290,7 +317,6 @@ button {
   color: rgb(147, 232, 147);
   cursor: pointer;
   display: inline-block;
-  font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
   padding: 7px 20px;
   text-align: center;
   text-decoration: none;
@@ -313,9 +339,15 @@ button:hover {
 }
 /* btn for back btn */
 .bckbtn {
-  background-color: #e7ea1f;
+  background-color: rgba(0, 0, 0, 0.737);
+   font-family: "Nabla", system-ui;
+  font-optical-sizing: auto;
   font-weight: 400;
-  font-size: x-large;
+  font-style: normal;
+  font-variation-settings:
+    "EDPT" 100,
+    "EHLT" 12;
+  font-size: 30px;
   border-radius: 100px;
   box-shadow: rgba(177, 187, 44, 0.2) 0 -25px 18px -14px inset,
     rgba(44, 187, 99, 0.15) 0 1px 2px, rgba(44, 187, 99, 0.15) 0 2px 4px,
@@ -336,8 +368,7 @@ button:hover {
 }
 
 .bckbtn:hover {
-  color: black;
-  font-weight: 700;
+  background-color: black;
   box-shadow: rgba(44, 187, 99, 0.35) 0 -25px 18px -14px inset,
     rgba(44, 187, 99, 0.25) 0 1px 2px, rgba(44, 187, 99, 0.25) 0 2px 4px,
     rgba(44, 187, 99, 0.25) 0 4px 8px, rgba(44, 187, 99, 0.25) 0 8px 16px,
