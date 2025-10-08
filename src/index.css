@@ -18,13 +18,12 @@ body {
 label {
   color: rgb(10, 1, 1);
   display: flex;
-  justify-content: center; 
-  align-items: center;     
+  justify-content: center;
+  align-items: center;
 }
-label :hover{
-  color:black
+label :hover {
+  color: black;
 }
-
 
 .maincontainer {
   display: flex;
@@ -51,7 +50,7 @@ label :hover{
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
   background-color: white;
 }
 
@@ -72,7 +71,6 @@ label :hover{
   }
 }
 
-
 .form {
   display: flex;
   flex-direction: column;
@@ -82,37 +80,35 @@ label :hover{
   padding: 20px;
   border-radius: 20px;
   margin-top: 50px;
-  
 }
 
 .form1 {
   display: flex;
-  justify-content: center; 
-  align-items: center;    
+  justify-content: center;
+  align-items: center;
   padding: 20px;
   border-radius: 20px;
-  flex-direction: column;  /* stack inputs vertically if needed */
+  flex-direction: column; /* stack inputs vertically if needed */
 }
 
 @media screen and (max-width: 640px) {
   .form1 {
     min-width: 30vw;
-   
   }
-  .form{
+  .form {
     background-image: none;
   }
 }
 
 /* Style the input */
 .form1 input {
-  margin: 10px 0;         
-  width: 80%;             
-  max-width: 300px;       
+  margin: 10px 0;
+  width: 80%;
+  max-width: 300px;
   padding: 10px;
   border-radius: 8px;
   border: 1px solid #ccc;
-  display: block;         
+  display: block;
 }
 
 form {
@@ -397,7 +393,7 @@ button:hover {
 @media screen and (max-width: 640px) {
   .profile-details {
     flex-direction: column; /* stack items vertically */
-    align-items: center;    /* center horizontally */
+    align-items: center; /* center horizontally */
     justify-content: flex-start; /* avoid stretching */
     min-height: auto;
   }
@@ -479,7 +475,15 @@ button:hover {
 }
 
 /* Loader css */
-/* From Uiverse.io by Charly-T */ 
+/* From Uiverse.io by Charly-T */
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full page height */
+  width: 100%;
+}
+
 .loader {
   --moon-r: 0.7em;
   --planet-r: 1.75em;

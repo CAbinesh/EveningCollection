@@ -36,7 +36,6 @@ function App() {
 
   // ✅ fetch logged-in user on app load
   useEffect(() => {
-    
     const initApp = async () => {
       try {
         // fetch logged-in user first
@@ -53,11 +52,11 @@ function App() {
 
           // now fetch live data with the user logged in
           await fetchData();
-        } else if (res.status === 401)  {
+        } else if (res.status === 401) {
           setUser(null);
         }
       } catch (err) {
-        console.error(err,"in app.jsx");
+        console.error(err, "in app.jsx");
         setUser(null);
       } finally {
         setLoading(false);
@@ -65,34 +64,45 @@ function App() {
     };
 
     initApp();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
- if (loading)
-  return (
-   
-<svg class="loader" viewBox="0 0 100 100">
-    <circle class="moon moon-back"></circle>
-    <circle class="planet"></circle>
-    <circle class="moon moon-front"></circle>
-</svg>
-  );
-
+  if (loading)
+    return (
+      <div className="loader-container">
+        <svg className="loader" viewBox="0 0 100 100">
+          <circle className="moon moon-back"></circle>
+          <circle className="planet"></circle>
+          <circle className="moon moon-front"></circle>
+        </svg>
+      </div>
+    );
 
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       <Routes>
-        <Route path="/" element={user ? <Home /> : <Navigate to="/auth" replace />} />
+        <Route
+          path="/"
+          element={user ? <Home /> : <Navigate to="/auth" replace />}
+        />
         <Route
           path="/DC"
           element={
-            user ? <DC fetchData={fetchData} /> : <Navigate to="/auth" replace />
+            user ? (
+              <DC fetchData={fetchData} />
+            ) : (
+              <Navigate to="/auth" replace />
+            )
           }
         />
         <Route
           path="/Ledger"
           element={
-            user ? <Ledger entries={entries} /> : <Navigate to="/auth" replace />
+            user ? (
+              <Ledger entries={entries} />
+            ) : (
+              <Navigate to="/auth" replace />
+            )
           }
         />
         <Route
@@ -111,7 +121,7 @@ function App() {
             user ? (
               <ProfileInfo profile={profiles} entries={entries} />
             ) : (
-              <Navigate to="/auth"  replace/>
+              <Navigate to="/auth" replace />
             )
           }
         />
@@ -119,7 +129,10 @@ function App() {
           path="/Addparty"
           element={user ? <AddParty /> : <Navigate to="/auth" replace />}
         />
-        <Route path="/Auth" element={user ? <Navigate to="/" replace /> : <Auth />} />
+        <Route
+          path="/Auth"
+          element={user ? <Navigate to="/" replace /> : <Auth />}
+        />
       </Routes>
     </AuthContext.Provider>
   );
