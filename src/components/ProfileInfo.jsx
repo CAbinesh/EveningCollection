@@ -93,13 +93,16 @@ function ProfileInfo({ profile, entries }) {
         minHeight: "100vh",
       }}
     >
-      <h1>ProfileInfo</h1>
+      <h1 className="title">ProfileInfo</h1>
       <button
         className="bckbtn"
         style={{  marginLeft: "10px" }}
         onClick={() => navigate(-1)}
       >
-        Go Back
+       <span className="material-symbols-outlined" style={{ verticalAlign: "middle", marginRight: "6px" }}>
+        arrow_back
+      </span>
+      
       </button>
 
       <div className="profile-details">

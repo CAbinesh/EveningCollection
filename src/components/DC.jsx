@@ -55,8 +55,11 @@ const API_URL=import.meta.env.VITE_API_URL
       <div className="form">
         <div className="childdcbtn">
           <button className="bckbtn" type="button" onClick={() => navigate(-1)}>
-            ← Back
-          </button>
+       <span className="material-symbols-outlined" style={{ verticalAlign: "middle", marginRight: "6px" }}>
+        arrow_back
+      </span>
+      
+      </button>
         </div>
 
         <form onSubmit={handleSubmit}>
@@ -90,7 +93,7 @@ const API_URL=import.meta.env.VITE_API_URL
           <br />
 
           <div className="buttonss">
-            <button type="submit">Submit</button>
+            <button className="submitbtn" type="submit">Submit</button>
           </div>
         </form>
       </div>

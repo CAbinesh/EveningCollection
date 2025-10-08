@@ -32,35 +32,30 @@ function Home() {
       </div>
       <div className="maincontainer">
         <div
-          style={{ backgroundColor: "blue", borderRadius: "15px" }}
           className="btn"
           onClick={() => navigate("/DC")}
         >
           DC
         </div>
         <div
-          style={{ backgroundColor: "blue", borderRadius: "15px" }}
           className="btn"
           onClick={() => navigate("/Ledger")}
         >
           Ledger
         </div>
         <div
-          style={{ backgroundColor: "blue", borderRadius: "15px" }}
           className="btn"
           onClick={() => navigate("/Profiles")}
         >
           Profile
         </div>
         <div
-          style={{ backgroundColor: "blue", borderRadius: "15px" }}
           className="btn"
           onClick={() => navigate("/AddParty")}
         >
           Add User
         </div>
         <div
-          style={{ backgroundColor: "red", borderRadius: "15px", color: "red" }}
           className="btn"
           onClick={handleLogout}
         >

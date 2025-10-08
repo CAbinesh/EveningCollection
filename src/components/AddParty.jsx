@@ -55,7 +55,6 @@ function AddParty() {
     setLoanAmount("");
     setInterest("");
   };
-  
 
   const handleChange = (e) => {
     const option = e.target.value;
@@ -91,13 +90,21 @@ function AddParty() {
         type="button"
         onClick={() => navigate(-1)}
       >
-        ← Back
+        <span
+          className="material-symbols-outlined"
+          style={{ verticalAlign: "middle", marginRight: "6px" }}
+        >
+          arrow_back
+        </span>
       </button>
 
       <div className="form1">
         <form onSubmit={handleSubmit}>
           {/* Name Input */}
-          <h1 className="honk-text" style={{ justifyContent: "center", display: "flex", }}>
+          <h1
+            className="title"
+            style={{ justifyContent: "center", display: "flex" }}
+          >
             ADD USER
           </h1>
           <label>Name:</label>
@@ -195,7 +202,9 @@ function AddParty() {
 
           {/* Buttons */}
           <div className="buttonss">
-            <button type="submit">Submit</button>
+            <button className="submitbtn" type="submit">
+              Submit
+            </button>
           </div>
         </form>
       </div>

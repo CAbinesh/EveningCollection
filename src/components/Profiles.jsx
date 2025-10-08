@@ -39,9 +39,12 @@ const API_URL=import.meta.env.VITE_API_URL
         padding: "1rem",
       }}
     >
-       <h1>Profiles</h1>
-      <button className="bckbtn" type="button" onClick={() => navigate(-1)}>
-        ← Back
+       <h1 className="title">Profiles</h1>
+     <button className="bckbtn" type="button" onClick={() => navigate(-1)}>
+       <span className="material-symbols-outlined" style={{ verticalAlign: "middle", marginRight: "6px" }}>
+        arrow_back
+      </span>
+      
       </button>
      
       <br />

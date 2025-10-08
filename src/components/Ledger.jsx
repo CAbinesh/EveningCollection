@@ -44,10 +44,13 @@ const groupedEntries = filteredEntries.reduce((acc, entry) => {
         padding: "1rem",
       }}
     >
-      <h1>Ledger</h1>
+      <h1 className="title">Ledger</h1>
 
       <button className="bckbtn" type="button" onClick={() => navigate(-1)}>
-        ← Back
+       <span className="material-symbols-outlined" style={{ verticalAlign: "middle", marginRight: "6px" }}>
+        arrow_back
+      </span>
+      
       </button>
       <br />
 
