@@ -506,7 +506,7 @@ button:hover {
   width: 100%;
   z-index: 1;
 
-  background-color: transparent;
+  background-color: black;
   mask: repeating-linear-gradient(
     90deg,
     transparent 0,
