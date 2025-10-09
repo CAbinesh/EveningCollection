@@ -56,7 +56,7 @@ const API_URL=import.meta.env.VITE_API_URL
         className="logo"
         src={Home}
         alt="My App Logo"
-        style={{ height: "150px",width:"200px" }}
+        style={{ height: "100px",width:"250px",marginBottom:"20px" }}
       />
     </div>
 

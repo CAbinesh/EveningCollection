@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import dc from "../assets/dc.png";
+// import dc from "../assets/dc.png";
 function DC(props) {
   const [dcNo, setDcNo] = useState("");
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState("");
   const navigate = useNavigate();
-const API_URL=import.meta.env.VITE_API_URL
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,25 +15,24 @@ const API_URL=import.meta.env.VITE_API_URL
       return;
     }
     try {
-      const res=await fetch(`${API_URL}/api/dc/${dcNo}`, {
+      const res = await fetch(`${API_URL}/api/dc/${dcNo}`, {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify({
-          
           amount,
           date,
         }),
-         credentials: "include"
+        credentials: "include",
       });
       // belwo step use to update live in profileinfo
-      if(res.ok){
-          if (props.fetchData) props.fetchData(); 
+      if (res.ok) {
+        if (props.fetchData) props.fetchData();
       }
       if (!res.ok) {
-      const data = await res.json();
-      alert(data.error || "Something went wrong");
-      return;
-    }
+        const data = await res.json();
+        alert(data.error || "Something went wrong");
+        return;
+      }
     } catch (error) {
       console.log(error);
     }
@@ -42,27 +41,20 @@ const API_URL=import.meta.env.VITE_API_URL
   };
 
   return (
-    <div
-      className="form-container"
-      style={{
-        backgroundImage: `url(${dc})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        minHeight: "100vh",
-        padding: "1rem",
-      }}
-    >
+    <div className="wallpaper">
       <div className="form">
         <div className="childdcbtn">
           <button className="bckbtn" type="button" onClick={() => navigate(-1)}>
-       <span className="material-symbols-outlined" style={{ verticalAlign: "middle", marginRight: "6px" }}>
-        arrow_back
-      </span>
-      
-      </button>
+            <span
+              className="material-symbols-outlined"
+              style={{ verticalAlign: "middle", marginRight: "6px" }}
+            >
+              arrow_back
+            </span>
+          </button>
         </div>
 
-        <form onSubmit={handleSubmit}>
+        <form style={{marginTop:'90px'}} onSubmit={handleSubmit}>
           <input
             type="text"
             value={dcNo}
@@ -93,7 +85,9 @@ const API_URL=import.meta.env.VITE_API_URL
           <br />
 
           <div className="buttonss">
-            <button className="submitbtn" type="submit">Submit</button>
+            <button className="submitbtn" type="submit">
+              Submit
+            </button>
           </div>
         </form>
       </div>

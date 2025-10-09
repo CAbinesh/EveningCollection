@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import dc from "../assets/dc.png";
 import { useNavigate } from "react-router-dom";
 
 function Ledger({ entries }) {
@@ -36,13 +35,7 @@ const groupedEntries = filteredEntries.reduce((acc, entry) => {
 
   return (
     <div
-      style={{
-        backgroundImage: `url(${dc})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        minHeight: "100vh",
-        padding: "1rem",
-      }}
+      className="wallpaper" style={{minHeight:"100vh"}}
     >
       <h1 className="title">Ledger</h1>
 
@@ -50,7 +43,6 @@ const groupedEntries = filteredEntries.reduce((acc, entry) => {
        <span className="material-symbols-outlined" style={{ verticalAlign: "middle", marginRight: "6px" }}>
         arrow_back
       </span>
-      
       </button>
       <br />
 
@@ -82,8 +74,8 @@ const groupedEntries = filteredEntries.reduce((acc, entry) => {
                   border: "1px solid #ccc",
                   borderRadius: "8px",
                   padding: "15px",
-                  marginBottom: "15px",
-                  backgroundColor: "#f9f9f9",
+                  margin:"2px",
+                  backgroundColor: 'black',
                 }}
               >
                 <h3>Date: {new Date(dateKey).toLocaleDateString(undefined, dateOptions)}</h3>

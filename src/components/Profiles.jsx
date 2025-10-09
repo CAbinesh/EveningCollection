@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from "react";
-import dc from "../assets/dc.png";
 import { useNavigate } from "react-router-dom";
 
 function Profiles() {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const [profile, setProfile] = useState([]);
-const API_URL=import.meta.env.VITE_API_URL
+  const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchedProfiles = async () => {
       try {
-        const res = await fetch(`${API_URL}/api/data`,{
-  method: "GET",
-  headers: { "Content-Type": "application/json" },
-  credentials: "include", // ✅ very important
-});
+        const res = await fetch(`${API_URL}/api/data`, {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include", // ✅ very important
+        });
         const data = await res.json();
         setProfile(data);
       } catch (error) {
@@ -30,23 +29,17 @@ const API_URL=import.meta.env.VITE_API_URL
       (entry.dcNo || "").includes(search)
   );
   return (
-    <div
-      style={{
-        backgroundImage: `url(${dc})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        minHeight: "100vh",
-        padding: "1rem",
-      }}
-    >
-       <h1 className="title">Profiles</h1>
-     <button className="bckbtn" type="button" onClick={() => navigate(-1)}>
-       <span className="material-symbols-outlined" style={{ verticalAlign: "middle", marginRight: "6px" }}>
-        arrow_back
-      </span>
-      
+    <div className="wallpaper" style={{minHeight:'100vh'}}>
+      <h1 className="title">Profiles</h1>
+      <button className="bckbtn" type="button" onClick={() => navigate(-1)}>
+        <span
+          className="material-symbols-outlined"
+          style={{ verticalAlign: "middle", marginRight: "6px" }}
+        >
+          arrow_back
+        </span>
       </button>
-     
+
       <br />
       <input
         className="sticky"
@@ -56,7 +49,7 @@ const API_URL=import.meta.env.VITE_API_URL
         onChange={(e) => setSearch(e.target.value)}
         placeholder="🔎 Search by name or DC No..."
       />
-      <div className="profile-container">
+      <div className="profile-container" >
         {filteredProfiles.length > 0 ? (
           filteredProfiles
             .slice() // make a copy so we don’t mutate state

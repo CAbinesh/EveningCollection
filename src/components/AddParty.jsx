@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import dc from "../assets/dc.png";
 
 // import Profile from "./Profile";
 
@@ -76,13 +75,7 @@ function AddParty() {
 
   return (
     <div
-      style={{
-        backgroundImage: `url(${dc})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        minHeight: "100vh",
-        padding: "1rem",
-      }}
+  className="wallpaper"
     >
       <button
         className="bckbtn"

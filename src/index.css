@@ -31,6 +31,7 @@
   --steel-blue: #4682b4;
 }
 body {
+  color: white;
   background-color: var(--light-silver);
   font-family: "Saira", sans-serif;
   font-optical-sizing: auto;
@@ -51,13 +52,10 @@ button {
   font-variation-settings: "wdth" 100;
 }
 label {
-  color: rgb(10, 1, 1);
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-label :hover {
-  color: black;
 }
 
 .maincontainer {
@@ -66,9 +64,20 @@ label :hover {
   justify-content: center;
   gap: 50px;
   align-items: baseline;
- background: radial-gradient(circle at top, #ffd56b, #ff6a00 30%, transparent 70%),
-  linear-gradient(to bottom, #ff6a00 1%,   var(--steel-blue),var(--electric-blue));  padding: 20px;
-border-top: 1px dashed rgba(192, 192, 192, 0.313);
+  background: radial-gradient(
+      circle at top,
+      #ffd56b,
+      #ff6a00 30%,
+      transparent 70%
+    ),
+    linear-gradient(
+      to bottom,
+      #ff6a00 1%,
+      var(--steel-blue),
+      var(--electric-blue)
+    );
+  padding: 20px;
+  border-top: 1px dashed rgba(192, 192, 192, 0.313);
   box-shadow: 0 8px 25px rgba(30, 144, 255, 0.4);
 
   @media screen and (max-width: 640px) {
@@ -80,11 +89,15 @@ border-top: 1px dashed rgba(192, 192, 192, 0.313);
 .container {
   display: flex;
   justify-content: center;
- 
-height: 250px;
-background:
-  radial-gradient(circle at bottom, white 1px, #ff6a00 40%, transparent 70%),
-  linear-gradient(to top, #ff7e5f, #feb47b, #86a8e7);
+
+  height: 250px;
+  background: radial-gradient(
+      circle at bottom,
+      white 1px,
+      #ff6a00 40%,
+      transparent 70%
+    ),
+    linear-gradient(to top, #ff7e5f, #feb47b, #86a8e7);
 }
 
 .container video {
@@ -110,10 +123,9 @@ background:
   flex-direction: column;
   justify-content: flex-start; /* align at the top */
   align-items: center;
-  min-height: auto; /* don’t force full screen height */
+  min-height: 100vh; /* don’t force full screen height */
   padding: 20px;
   border-radius: 20px;
-  margin-top: 50px;
 }
 
 .form1 {
@@ -156,13 +168,16 @@ form {
 }
 
 form:hover {
-  background: url(../src/assets/formhover.jpg);
+ background: #EB5757;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to top, #000000, #EB5757);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to top, #000000, #EB5757); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   background-size: 100% 100%;
   background-position: "center";
   min-height: "100vh";
   padding: "1rem";
   background-repeat: no-repeat;
-  box-shadow: #0c0d0d 12px -8px 10px;
+  box-shadow: white 2px -5px 10px;
   transform: translateY(-10px);
 }
 .childdcbtn {
@@ -177,8 +192,8 @@ input[type="date"] {
   margin: 10px;
   border-radius: 12px;
   width: 220px;
-  border: 2px solid var(--electric-blue);
-  box-shadow: 0 4px 8px var(--steel-blue);
+  border: 2px solid var(--sunshine-yellow);
+  box-shadow: 0 4px 8px var(--bright-orange);
   font-size: 16px;
   color: var(--electric-blue);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
@@ -188,8 +203,8 @@ input[type="date"] {
 input[type="text"]:focus,
 input[type="number"]:focus,
 input[type="date"]:focus {
-  border-color: var(--bright-cyan);
-  box-shadow: 0 0 10px var(--bright-orange);
+  border-color: var(--bright-orange);
+  box-shadow: 0 0 10px white;
   outline: none;
   color: black;
 }
@@ -361,7 +376,7 @@ button {
 .profile-card {
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0px 8px 8px rgba(228, 8, 8, 0.516);
+  box-shadow: 0px 8px 8px black;
   padding: 1.5rem;
   width: 250px;
   text-align: center;
@@ -370,7 +385,7 @@ button {
 
 .profile-card:hover {
   transform: translateY(-5px);
-  box-shadow: 10px 10px 16px rgba(186, 6, 6, 0.874);
+  box-shadow: 8px 8px 8px rgba(255, 255, 255, 0.411);
 }
 
 .profile-card h3 {
@@ -430,8 +445,18 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  background: linear-gradient(to right, #f3f4f6, #e5e7eb);
+  min-height: 100vh;
+  background: #0b486b; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to bottom,
+    #f56217,
+    #0b486b
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    #f56217,
+    #0b486b
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   font-family: sans-serif;
 }
 
@@ -442,7 +467,7 @@ button {
 }
 
 .auth-form {
-  background: white;
+  min-height: 50vh;
   padding: 2rem 3rem;
   border-radius: 1rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -560,12 +585,37 @@ button {
 }
 
 /* Delay each emoji for sequential fade */
-.dot span:nth-child(1) { animation-delay: 0s; }
-.dot span:nth-child(2) { animation-delay: 0.2s; }
-.dot span:nth-child(3) { animation-delay: 0.4s; }
+.dot span:nth-child(1) {
+  animation-delay: 0s;
+}
+.dot span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.dot span:nth-child(3) {
+  animation-delay: 0.4s;
+}
 
 /* Fade keyframes */
 @keyframes fade {
-  0%, 100% { opacity: 0; }
-  50% { opacity: 1; }
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
 }
+.wallpaper {
+  background: #780206; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #061161,
+    #780206
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #061161,
+    #780206
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+

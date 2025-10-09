@@ -1,7 +1,6 @@
 import React from "react";
 import userpng from "../assets/user.png";
 import { useNavigate, useParams } from "react-router-dom";
-import dc from "../assets/dc.png";
 
 function ProfileInfo({ profile, entries }) {
   const { id } = useParams();
@@ -86,12 +85,7 @@ function ProfileInfo({ profile, entries }) {
 
   return (
     <div
-      style={{
-        backgroundImage: `url(${dc})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center", // centers the image
-        minHeight: "100vh",
-      }}
+      className="wallpaper"
     >
       <h1 className="title">ProfileInfo</h1>
       <button
@@ -242,13 +236,13 @@ function ProfileInfo({ profile, entries }) {
                 textAlign: "center",
               }}
             >
-              <thead style={{ border: "3px solid #333" }}>
+              <thead style={{ border: "3px solid white" }}>
                 <tr>
                   <th>Amount (₹)</th>
                   <th>Date</th>
                 </tr>
               </thead>
-              <tbody style={{ border: "3px solid #333" }}>
+              <tbody style={{ border: "3px solid white" }}>
                 {matchedEntries.map((e, i) => (
                   <tr key={i}>
                     <td>{e.amount}</td>
