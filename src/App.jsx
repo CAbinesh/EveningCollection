@@ -75,6 +75,17 @@ function App() {
           <circle className="planet"></circle>
           <circle className="moon moon-front"></circle>
         </svg>
+        <br />
+        <br />
+        <br />
+        <h3>
+          Burning
+          <span className="dot">
+            <span>🔥</span>
+            <span>🔥</span>
+            <span>🔥</span>
+          </span>
+        </h3>
       </div>
     );
 

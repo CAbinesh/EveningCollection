@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import PreviewVideo from "../assets/Preview.mp4"; // ✅ import video
+import PreviewVideo from "../assets/Preview.webm"; // ✅ import video
 import { AuthContext } from "../App";
 
 function Home() {
@@ -56,7 +56,7 @@ function Home() {
           Add User
         </div>
         <div
-          className="btn"
+          className="btnLogout"
           onClick={handleLogout}
         >
           Logout
