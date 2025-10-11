@@ -78,14 +78,14 @@ function App() {
         <br />
         <br />
         <br />
-        <h3>
+        <h2 className="dotburning">
           Burning
           <span className="dot">
             <span>🔥</span>
             <span>🔥</span>
             <span>🔥</span>
           </span>
-        </h3>
+        </h2>
       </div>
     );
 
@@ -108,14 +108,9 @@ function App() {
         />
         <Route
           path="/Ledger"
-          element={
-            user ? (
-              <Ledger entries={entries} />
-            ) : (
-              <Navigate to="/auth" replace />
-            )
-          }
+          element={user ? <Ledger /> : <Navigate to="/auth" replace />}
         />
+
         <Route
           path="/Profiles"
           element={

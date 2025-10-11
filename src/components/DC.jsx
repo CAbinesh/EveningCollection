@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import dc from "../assets/dc.png";
 function DC(props) {
   const [dcNo, setDcNo] = useState("");
   const [amount, setAmount] = useState("");

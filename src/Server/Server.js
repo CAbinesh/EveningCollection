@@ -11,6 +11,7 @@ import jwt from "jsonwebtoken";
 import { Document, Packer, Paragraph, TextRun } from "docx";
 import User from "../models/User.js";
 import Profile from "../models/Profile.js";
+import Ledger from "../models/Ledger.js";
 
 dotenv.config();
 
@@ -168,6 +169,16 @@ app.get("/api/dcEntries", middleware, async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+// Get all ledger records
+app.get("/api/ledger", async (req, res) => {
+  try {
+    const ledgers = await Ledger.find().sort({ date: -1 });
+    res.json(ledgers);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 
 app.post("/api/dc/:dcNo", middleware, async (req, res) => {
   try {
@@ -177,31 +188,34 @@ app.post("/api/dc/:dcNo", middleware, async (req, res) => {
     if (!amount || !date)
       return res.status(400).json({ error: "Amount and date are required" });
 
+    // 🔹 1. Find the profile
     const profile = await Profile.findOne({ dcNo });
     if (!profile) return res.status(404).json({ error: "Profile not found" });
 
+    // 🔹 2. Add entry to profile's dcEntries
     profile.dcEntries = profile.dcEntries || [];
     profile.dcEntries.push({ amount, date });
-
     await profile.save();
-    res
-      .status(201)
-      .json({ message: "Entry added", dcEntries: profile.dcEntries });
+
+    // 🔹 3. Also save a copy to Ledger
+    const ledgerEntry = new Ledger({
+      dcNo: profile.dcNo,
+      profileName: profile.name,
+      amount,
+      date,
+    });
+    await ledgerEntry.save();
+
+    res.status(201).json({
+      message: "Entry added to profile and ledger",
+      dcEntries: profile.dcEntries,
+    });
   } catch (err) {
+    console.error("Error adding DC entry:", err);
     res.status(500).json({ error: err.message });
   }
 });
 
-app.put("/api/data/:id", middleware, authLimiter, async (req, res) => {
-  try {
-    const updated = await Profile.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    });
-    res.json(updated);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
 
 // GET Word document
 app.get("/api/download-doc/:id", middleware, async (req, res) => {
@@ -263,13 +277,40 @@ app.get("/api/download-doc/:id", middleware, async (req, res) => {
 // DELETE profile
 app.delete("/api/data/:id", middleware, authLimiter, async (req, res) => {
   try {
-    const deleted = await Profile.findByIdAndDelete(req.params.id);
-    if (!deleted) return res.status(404).json({ message: "Profile not found" });
-    res.json({ message: "Profile deleted successfully" });
+    const { id } = req.params;
+
+    const profile = await Profile.findById(id);
+    if (!profile) return res.status(404).json({ message: "Profile not found" });
+
+    // Map DC entries to ledger format
+    const ledgerEntries = profile.dcEntries.map((entry) => ({
+      dcNo: profile.dcNo,
+      profileId: profile._id,
+      amount: entry.amount,
+      date: entry.date,
+    }));
+
+    // Insert only entries that do NOT already exist in Ledger
+    for (let entry of ledgerEntries) {
+      const exists = await Ledger.findOne({
+        dcNo: entry.dcNo,
+        amount: entry.amount,
+        date: entry.date,
+      });
+      if (!exists) {
+        await Ledger.create(entry);
+      }
+    }
+
+    // Delete the profile
+    await Profile.findByIdAndDelete(id);
+
+    res.json({ message: "Profile deleted successfully. Ledger entries preserved." });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
+
 
 
 // ===== Start server =====

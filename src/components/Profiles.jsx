@@ -43,7 +43,7 @@ function Profiles() {
       <br />
       <input
         className="sticky"
-        style={{ width: "50%", position: "sticky", top: 0 }}
+        style={{ width: "50%", position: "sticky", top: 0,zIndex:"999" }}
         type="text"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
@@ -63,8 +63,8 @@ function Profiles() {
                 onClick={() => navigate(`/Profiles/${entry.dcNo}`)}
                 style={{ cursor: "pointer" }}
               >
-                <h3 style={{ color: "red" }}>{entry.dcNo}</h3>
-                <h4 style={{ color: "blue" }}>{entry.name}</h4>
+                <h3 style={{ color: "yellow" }}>{entry.dcNo}</h3>
+                <h4 style={{ color: "white" }}>{entry.name}</h4>
 
                 <p>Tap to view entries</p>
               </div>

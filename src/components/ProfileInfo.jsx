@@ -1,11 +1,14 @@
 import React from "react";
 import userpng from "../assets/user.png";
+import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 function ProfileInfo({ profile, entries }) {
   const { id } = useParams();
   const navigate = useNavigate();
   const API_URL = import.meta.env.VITE_API_URL;
+    const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  
 
   // Find the user by their unique identifier (dcNo)
   const user = profile.find((p) => String(p.dcNo) === String(id));
@@ -31,6 +34,8 @@ function ProfileInfo({ profile, entries }) {
   const endDate = new Date(user.endDate);
   const remaindays = Math.ceil((endDate - today) / (1000 * 60 * 60 * 24));
  const handleDelete = async (id) => {
+  const confirmed = window.confirm("Are you sure you want to delete?");
+  if (!confirmed) return;
   try {
     // 1. Download Word document
     const response = await fetch(`${API_URL}/api/download-doc/${id}`, {
@@ -136,7 +141,7 @@ function ProfileInfo({ profile, entries }) {
               padding: "8px 0",
               borderBottom: "1px solid#1b3d81ff",
               fontWeight: 500,
-              color: "red",
+              color: "yellow",
             }}
           >
             DC.NO: <span style={{ fontWeight: 600 }}>{user.dcNo}</span>
@@ -193,7 +198,7 @@ function ProfileInfo({ profile, entries }) {
               padding: "8px 0",
               borderBottom: "1px solid#1b3d81ff",
               fontWeight: 500,
-              color: remaindays > 0 ? "#238d1fff" : "#dc2626",
+              color: remaindays > 0 ? "yellow" : "white",
             }}
           >
             Days left:{" "}
@@ -202,8 +207,9 @@ function ProfileInfo({ profile, entries }) {
             </span>
           </h4>
 
-          <button
-            onClick={() => handleDelete(user._id)}
+          <div>
+            <button
+            onClick={() =>setShowDeleteConfirm(true)}
             style={{
               marginTop: "18px",
               width: "100%",
@@ -220,6 +226,32 @@ function ProfileInfo({ profile, entries }) {
           >
             Delete ❌
           </button>
+          {showDeleteConfirm && (
+          <div className="modalBackdrop">
+            <div className="modalBox">
+              <h3 style={{color:'red'}}>Confirm Delete</h3>
+              <p style={{color:'black'}}>Are you sure you want to delete?</p>
+              <div className="modalButtons">
+                <button
+                  className="btn"
+                  onClick={() => {
+                    handleDelete(user.id); // ✅ logout only when confirmed
+                    setShowDeleteConfirm(false);
+                  }}
+                >
+                  Yes
+                </button>
+                <button
+                  className="btn"
+                  onClick={() => setShowDeleteConfirm(false)}
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+          </div>
         </div>
 
         {/* Table Section */}
@@ -242,7 +274,7 @@ function ProfileInfo({ profile, entries }) {
                   <th>Date</th>
                 </tr>
               </thead>
-              <tbody style={{ border: "3px solid white" }}>
+              <tbody style={{ border: "3px solid white",color:'white' }}>
                 {matchedEntries.map((e, i) => (
                   <tr key={i}>
                     <td>{e.amount}</td>
