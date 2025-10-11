@@ -775,4 +775,15 @@ button {
     gap: 10px;
   }
 }
-
+.ledgertext{
+   color: white; /* Text fill color */
+  -webkit-text-stroke: 1px red; /* Outline color + thickness */
+  font-weight: 900;
+  font-size: 20px;
+}
+.ledgertxtarw{
+  color: yellow; /* Text fill color */
+  -webkit-text-stroke: 1px red; /* Outline color + thickness */
+  font-weight: 700;
+  font-size: 20px; 
+}

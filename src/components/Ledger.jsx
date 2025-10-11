@@ -6,7 +6,7 @@ function Ledger() {
   const [search, setSearch] = useState("");
   const [allEntries, setAllEntries] = useState([]);
   const [loading, setLoading] = useState(true);
-const API_URL = import.meta.env.VITE_API_URL;
+  const API_URL = import.meta.env.VITE_API_URL;
 
   // ✅ Fetch all ledger entries from backend
   useEffect(() => {
@@ -75,7 +75,13 @@ const API_URL = import.meta.env.VITE_API_URL;
 
       <input
         className="sticky"
-        style={{ width: "50%", position: "sticky", top: 0, margin: "10px 0",zIndex:"999" }}
+        style={{
+          width: "50%",
+          position: "sticky",
+          top: 0,
+          margin: "10px 0",
+          zIndex: "999",
+        }}
         type="text"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
@@ -104,15 +110,23 @@ const API_URL = import.meta.env.VITE_API_URL;
                     )}
                   </h3>
                   <ul>
-                    {entriesForDate.map((entry, idx) => (
-                      <li key={idx}>
-                        Profile:{" "}
-                        <span style={{ color: "#9af" }}>
-                          {entry.dcNo || "Deleted Profile"}
-                        </span>{" "}
-                        ⇛ Amount : ₹{entry.amount.toLocaleString()}
-                      </li>
-                    ))}
+                    {entriesForDate
+                      .sort(
+                        (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
+                      )
+                      .map((entry, idx) => (
+                        <li key={idx}>
+                          {" "}
+                          <span className="ledgertext">
+                            {entry.dcNo || "Deleted Profile"}
+                            
+                          </span>{" "}
+                          <span className="ledgertxtarw"> ⇛ </span>
+                          <span className="ledgertext">
+                            ₹{entry.amount.toLocaleString()}
+                          </span>
+                        </li>
+                      ))}
                   </ul>
                   <p style={{ fontWeight: "bold", color: "yellow" }}>
                     Total: ₹{totalAmount.toLocaleString()}
