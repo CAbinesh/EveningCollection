@@ -60,7 +60,7 @@ const API_URL = import.meta.env.VITE_API_URL;
   }
 
   return (
-    <div className="wallpaper" style={{ minHeight: "100vh" }}>
+    <div className="wallpaper1" style={{ minHeight: "100vh" }}>
       <h1 className="title">Ledger</h1>
 
       <button className="bckbtn" type="button" onClick={() => navigate(-1)}>

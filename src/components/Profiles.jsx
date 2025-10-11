@@ -29,7 +29,7 @@ function Profiles() {
       (entry.dcNo || "").includes(search)
   );
   return (
-    <div className="wallpaper" style={{minHeight:'100vh'}}>
+    <div className="wallpaper1" style={{minHeight:'100vh'}}>
       <h1 className="title">Profiles</h1>
       <button className="bckbtn" type="button" onClick={() => navigate(-1)}>
         <span
