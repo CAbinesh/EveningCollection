@@ -9,7 +9,7 @@ function AddParty() {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [loanAmount, setLoanAmount] = useState("");
-  const [interest, setInterest] = useState("");
+  const [interest, setInterest] = useState("100days");
   // const [image, setImage] = useState("/user.png"); // default image path from public folder
   const [selected, setSelected] = useState("");
   const API_URL = import.meta.env.VITE_API_URL;
