@@ -53,8 +53,23 @@ function Ledger() {
 
   if (loading) {
     return (
-      <div style={{ color: "white", textAlign: "center", marginTop: "100px" }}>
-        Loading ledger...
+      <div className="loader-container">
+        <svg className="loader" viewBox="0 0 100 100">
+          <circle className="moon moon-back"></circle>
+          <circle className="planet"></circle>
+          <circle className="moon moon-front"></circle>
+        </svg>
+        <br />
+        <br />
+        <br />
+        <h2 className="dotburning">
+          Burning
+          <span className="dot">
+            <span>🔥</span>
+            <span>🔥</span>
+            <span>🔥</span>
+          </span>
+        </h2>
       </div>
     );
   }
