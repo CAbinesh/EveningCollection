@@ -559,7 +559,9 @@ button {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-image: url("../src/assets/img1.png");
+  background-image: url("../src/assets/im001.jpg");
+  background-position: center;
+  background-size: cover;
   font-family: sans-serif;
 }
 
@@ -786,4 +788,8 @@ button {
   -webkit-text-stroke: 1px red; /* Outline color + thickness */
   font-weight: 700;
   font-size: 20px; 
+}
+.logoauth{
+  background-color: #ecf3f2;
+  border-radius: 20px;
 }
