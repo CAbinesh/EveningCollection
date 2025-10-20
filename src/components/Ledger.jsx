@@ -54,22 +54,14 @@ function Ledger() {
   if (loading) {
     return (
       <div className="loader-container">
-        <svg className="loader" viewBox="0 0 100 100">
-          <circle className="moon moon-back"></circle>
-          <circle className="planet"></circle>
-          <circle className="moon moon-front"></circle>
-        </svg>
-        <br />
-        <br />
-        <br />
-        <h2 className="dotburning">
-          Burning
-          <span className="dot">
-            <span>🔥</span>
-            <span>🔥</span>
-            <span>🔥</span>
-          </span>
-        </h2>
+<div class="loader">
+  <div class="loader__bar"></div>
+  <div class="loader__bar"></div>
+  <div class="loader__bar"></div>
+  <div class="loader__bar"></div>
+  <div class="loader__bar"></div>
+  <div class="loader__ball"></div>
+</div>
       </div>
     );
   }
@@ -134,7 +126,6 @@ function Ledger() {
                           {" "}
                           <span className="ledgertext">
                             {entry.dcNo || "Deleted Profile"}
-                            
                           </span>{" "}
                           <span className="ledgertxtarw"> ⇛ </span>
                           <span className="ledgertext">
