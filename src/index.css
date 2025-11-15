@@ -961,9 +961,10 @@ button {
 .wallpaper1 {
  
   background-image: url("../src/assets/img8.jpg");
-  background-size:auto;
-  background-position: center;
-  background-repeat: repeat;
+background-repeat: no-repeat;   /* no stretching */
+  background-size: auto;          /* ❗ keeps original image size */
+  background-position: top center;
+  background-attachment: fixed;   /* stays fixed behind content */
 }
 .modalBackdrop {
   position: fixed;
