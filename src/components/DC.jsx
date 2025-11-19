@@ -55,7 +55,7 @@ function DC(props) {
 
         <form style={{marginTop:'90px'}} onSubmit={handleSubmit}>
           <input
-            type="number"
+            type="text"
             value={dcNo}
             onChange={(e) => setDcNo(e.target.value)}
             placeholder="DC NO"
