@@ -78,6 +78,9 @@ function Home() {
           </div>
         )}
       </div>
+      <div className="footer">
+         © 2025 MyWebsite. All rights reserved.
+      </div>
     </div>
   );
 }

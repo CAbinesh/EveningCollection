@@ -84,9 +84,9 @@ label {
 .maincontainer {
   display: flex;
   flex-wrap: wrap;
-  min-height: 50vh;
+  min-height: 70vh;
   justify-content: center;
-   align-items: center;
+  align-items: center;
   gap: 50px;
   align-items: baseline;
   background: radial-gradient(
@@ -110,7 +110,15 @@ label {
     min-height: auto;
   }
 }
-
+.footer {
+  text-align: center;
+  margin-top: 0;
+   background: 
+    linear-gradient(
+      to bottom,
+      var(--electric-blue)
+    );
+}
 .container {
   display: flex;
   justify-content: center;
@@ -227,15 +235,15 @@ form {
     box-sizing: border-box; /* Include padding in width */
   }
   .form {
-    width: 90%;           /* Make the form responsive */
-    max-width: 200px;     /* Optional max width */
-    margin: 0 auto;       /* Center the form */
+    width: 90%; /* Make the form responsive */
+    max-width: 200px; /* Optional max width */
+    margin: 0 auto; /* Center the form */
   }
 
   .form input {
-    width: 100%;           /* Fill the form width */
-    max-width: 100%;       /* Ensure it doesn’t exceed form */
-    margin: 10px 0;        /* Keep your vertical spacing */
+    width: 100%; /* Fill the form width */
+    max-width: 100%; /* Ensure it doesn’t exceed form */
+    margin: 10px 0; /* Keep your vertical spacing */
     padding: 10px;
     box-sizing: border-box; /* Include padding in width */
   }
@@ -268,8 +276,8 @@ input[type="date"] {
 }
 
 input[type="text"]:focus,
-input[type='email']:focus,
-input[type='password']:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
 input[type="number"]:focus,
 input[type="date"]:focus {
   border-color: var(--bright-orange);
@@ -588,7 +596,6 @@ button {
   font-size: 1rem;
 }
 
-
 .auth-form button {
   width: 100%;
   padding: 0.75rem;
@@ -613,9 +620,9 @@ button {
   align-items: center;
   height: 100vh; /* Full page height */
   width: 100%;
-  background-color:black;
+  background-color: black;
 }
-/* From Uiverse.io by Nawsome */ 
+/* From Uiverse.io by Nawsome */
 .loader {
   position: relative;
   width: 75px;
@@ -953,17 +960,15 @@ button {
   }
 }
 .wallpaper {
- 
-  background-image: url("../src/assets/img8.jpg");
-  background-size:cover;
+  background-image: url("../src/assets/img89.jpg");
+  background-size: cover;
   background-position: center;
 }
 .wallpaper1 {
- 
-  background-image: url("../src/assets/img8.jpg");
-  background-size:auto;
+  background-image: url("../src/assets/img89.jpg");
+  background-attachment: fixed;
+  background-size: cover;
   background-position: center;
-  background-repeat: repeat;
 }
 .modalBackdrop {
   position: fixed;
@@ -971,7 +976,7 @@ button {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -985,7 +990,7 @@ button {
   text-align: center;
   min-width: 250px;
   max-width: 90%;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .modalButtons {
@@ -1001,8 +1006,6 @@ button {
 }
 /* Responsive adjustments for screens <= 640px */
 @media screen and (max-width: 640px) {
- 
-
   .modalBox {
     width: 50%; /* fit smaller screens */
     padding: 15px;
@@ -1013,19 +1016,29 @@ button {
     gap: 10px;
   }
 }
-.ledgertext{
-   color: white; /* Text fill color */
+.ledgertext {
+  color: white; /* Text fill color */
   -webkit-text-stroke: 1px red; /* Outline color + thickness */
   font-weight: 900;
   font-size: 20px;
 }
-.ledgertxtarw{
+.ledgertxtarw {
   color: yellow; /* Text fill color */
   -webkit-text-stroke: 1px red; /* Outline color + thickness */
   font-weight: 700;
-  font-size: 20px; 
+  font-size: 20px;
 }
-.logoauth{
+.logoauth {
   background-color: #ecf3f2;
   border-radius: 20px;
+}
+.sticky {
+  width: 25%;
+  transition: width 0.35s cubic-bezier(0.25, 0.1, 0.25, 1),
+    box-shadow 0.25s ease;
+  will-change: width;
+}
+.sticky:hover,
+.sticky:focus {
+  width: 400px;
 }
