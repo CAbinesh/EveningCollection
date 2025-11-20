@@ -31,24 +31,38 @@ function Profiles() {
   return (
     <div className="wallpaper1" style={{minHeight:'100vh'}}>
       <h1 className="title">Profiles</h1>
-      <button className="bckbtn" type="button" onClick={() => navigate(-1)}>
-        <span
-          className="material-symbols-outlined"
-          style={{ verticalAlign: "middle", marginRight: "6px" }}
+      <div className="sticky-box" style={{ position: "sticky", top: 0,zIndex:999 }}>
+        <button
+          className="bckbtn"
+          style={{ marginLeft: "15px" }}
+          type="button"
+          onClick={() => navigate(-1)}
         >
-          arrow_back
-        </span>
-      </button>
+          <span
+            className="material-symbols-outlined"
+            style={{ verticalAlign: "middle" }}
+          >
+            arrow_back
+          </span>
+        </button>
+        <br />
 
-      <br />
-      <input
-        className="sticky"
-        style={{ width: "50%", position: "sticky", top: 0,zIndex:"999" }}
-        type="text"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        placeholder="🔎 Search by name or DC No..."
-      />
+        <input
+          className="sticky"
+          style={{
+            
+            position: "sticky",
+            top: 0,
+            margin: "10px 0",
+            marginLeft: "15px",
+            zIndex: "999",
+          }}
+          type="text"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="🔎 Search by DCNo....."
+        />
+      </div>
       <div className="profile-container" >
         {filteredProfiles.length > 0 ? (
           filteredProfiles

@@ -32,7 +32,7 @@ function Ledger() {
       (entry.profileName &&
         entry.profileName.toLowerCase().includes(search.toLowerCase())) ||
       entryDate.includes(search) ||
-      (entry.amount && entry.amount.toString().includes(search))
+      (entry.dcNo && entry.dcNo.toString().includes(search))
     );
   });
 
@@ -54,14 +54,14 @@ function Ledger() {
   if (loading) {
     return (
       <div className="loader-container">
-<div class="loader">
-  <div class="loader__bar"></div>
-  <div class="loader__bar"></div>
-  <div class="loader__bar"></div>
-  <div class="loader__bar"></div>
-  <div class="loader__bar"></div>
-  <div class="loader__ball"></div>
-</div>
+        <div class="loader">
+          <div class="loader__bar"></div>
+          <div class="loader__bar"></div>
+          <div class="loader__bar"></div>
+          <div class="loader__bar"></div>
+          <div class="loader__bar"></div>
+          <div class="loader__ball"></div>
+        </div>
       </div>
     );
   }
@@ -70,30 +70,40 @@ function Ledger() {
     <div className="wallpaper1" style={{ minHeight: "100vh" }}>
       <h1 className="title">Ledger</h1>
 
-      <button className="bckbtn" type="button" onClick={() => navigate(-1)}>
-        <span
-          className="material-symbols-outlined"
-          style={{ verticalAlign: "middle", marginLeft: "5px" }}
+      <div
+        className="sticky-box"
+        style={{ position: "sticky", top: 0, zIndex: 999 }}
+      >
+        <button
+          className="bckbtn"
+          style={{ marginLeft: "15px" }}
+          type="button"
+          onClick={() => navigate(-1)}
         >
-          arrow_back
-        </span>
-      </button>
-      <br />
+          <span
+            className="material-symbols-outlined"
+            style={{ verticalAlign: "middle" }}
+          >
+            arrow_back
+          </span>
+        </button>
+        <br />
 
-      <input
-        className="sticky"
-        style={{
-          width: "50%",
-          position: "sticky",
-          top: 0,
-          margin: "10px 0",
-          zIndex: "999",
-        }}
-        type="text"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        placeholder="🔎 Search by name, amount, or date (YYYY-MM-DD)..."
-      />
+        <input
+          className="sticky"
+          style={{
+            position: "sticky",
+            top: 0,
+            margin: "10px 0",
+            marginLeft: "15px",
+            zIndex: "999",
+          }}
+          type="text"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="🔎 Search by name,dcNo,or date (YYYY-MM-DD)..."
+        />
+      </div>
 
       <div className="ledgerContainer">
         {Object.keys(groupedEntries).length === 0 ? (
