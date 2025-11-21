@@ -80,7 +80,7 @@ function Profiles() {
                 <h3 style={{ color: "yellow" }}>{entry.dcNo}</h3>
                 <h4 style={{ color: "white" }}>{entry.name}</h4>
 
-                <p style={{color:'red'}}>Tap to view entries</p>
+                <p style={{color:'white'}}>Tap to view entries</p>
               </div>
             ))
         ) : (

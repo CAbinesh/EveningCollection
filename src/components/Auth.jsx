@@ -2,13 +2,14 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../App"; // ✅ you already have AuthContext
 import Home from "../assets/Preview.png";
+import PreviewVideo from "../assets/Preview3.webm";
 
 function Auth() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLogin, setIsLogin] = useState(true);
   const [error, setError] = useState("");
-const API_URL=import.meta.env.VITE_API_URL
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const { setUser } = useContext(AuthContext); // ✅ comes from App.jsx
   const navigate = useNavigate();
@@ -16,9 +17,7 @@ const API_URL=import.meta.env.VITE_API_URL
   const handleSubmit = async (e) => {
     e.preventDefault(); // prevent page reload
     try {
-      const url = isLogin
-        ? `${API_URL}/api/login`
-        : `${API_URL}/api/signup`;
+      const url = isLogin ? `${API_URL}/api/login` : `${API_URL}/api/signup`;
 
       const res = await fetch(url, {
         method: "POST",
@@ -48,46 +47,62 @@ const API_URL=import.meta.env.VITE_API_URL
   };
 
   return (
-    <div className="auth-container">
-  <div className="auth-form">
-    {/* Logo wrapper */}
-    
+    <div>
+      <div className="auth-container">
+        <div className="containerAuth">
+          <video autoPlay playsInline disablePictureInPicture muted loop>
+            <source src={PreviewVideo} />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <img
+          className="logoauth"
+          src={Home}
+          alt="My App Logo"
+          
+        />
+        <div className="auth-form">
+          {/* Logo wrapper */}
 
-    <form onSubmit={handleSubmit}>
-      <div style={{ display: "flex", justifyContent: "center"}}>
-      <img
-        className="logoauth"
-        src={Home}
-        alt="My App Logo"
-        style={{ height: "100px",width:"250px" }}
-      />
+          <form className="loginCard" onSubmit={handleSubmit}>
+            <div style={{ display: "flex", justifyContent: "center" }}></div>
+            <h2
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                color: "white",
+              }}
+            >
+              {isLogin ? "Login" : "Signup"}
+            </h2>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter Email"
+              required
+            />
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter Password"
+              required
+            />
+            <button type="submit">{isLogin ? "Login" : "Sign Up"}</button>
+          </form>
+          
+          
+          <button className="loginbtn" onClick={() => setIsLogin(!isLogin)}>
+            {isLogin
+              ? "Need an account? Sign Up"
+              : "Already have an account? Login"}
+          </button>
+
+          {error && <p style={{ color: "red" }}>{error}</p>}
+        </div>
+      </div>
     </div>
-      <h2 style={{display:"flex",justifyContent:"center",color:'black'}}>{isLogin? "Login":"Signup"}</h2>
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Enter Email"
-        required
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Enter Password"
-        required
-      />
-      <button type="submit">{isLogin ? "Login" : "Sign Up"}</button>
-    </form>
-
-    <button onClick={() => setIsLogin(!isLogin)}>
-      {isLogin ? "Need an account? Sign Up" : "Already have an account? Login"}
-    </button>
-
-    {error && <p style={{ color: "red" }}>{error}</p>}
-  </div>
-</div>
-
   );
 }
 

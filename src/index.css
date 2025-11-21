@@ -113,11 +113,7 @@ label {
 .footer {
   text-align: center;
   margin-top: 0;
-   background: 
-    linear-gradient(
-      to bottom,
-      var(--electric-blue)
-    );
+  background: linear-gradient(to bottom, var(--electric-blue));
 }
 .container {
   display: flex;
@@ -251,9 +247,19 @@ form {
 
 form:hover {
   padding: "1rem";
-  background-repeat: no-repeat;
-  box-shadow: white 2px -5px 10px;
+  box-shadow: rgb(249, 248, 248) 2px -5px 10px;
   transform: translateY(-10px);
+}
+.loginCard {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform: translateZ(-20px) rotateX(2deg);
+}
+
+.loginCard:hover {
+  padding: "1rem";
+  background-repeat: no-repeat;
+  box-shadow: rgb(7, 7, 7) 2px -5px 10px;
+  transform: translateZ(-80px);
 }
 .childdcbtn {
   position: absolute;
@@ -562,17 +568,63 @@ button {
 }
 
 .auth-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-image: url("../src/assets/im001.jpg");
+  /* background-image: url("../src/assets/im001.jpg"); */
   background-position: center;
   background-size: cover;
   font-family: sans-serif;
 }
+.auth-container img {
+  height: 60px;
+  width: 200px;
+  position: absolute;
+  background: transparent;
+  top: 15px;
+  right: 10px;
+}
+@media screen and (max-width: 768px) {
+  .auth-container {
+    position: relative;
+  }
 
+  .auth-container img {
+    position: absolute;
+    top: 15px; /* Stick to the top */
+    left: 50%; /* Move center horizontally */
+    transform: translateX(-50%); /* Shift back half width */
+    width: 200px;
+  }
+}
+
+.containerAuth {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Full screen height */
+  overflow: hidden;
+}
+.containerAuth video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100dvh;
+  object-fit: cover; /* Makes video cover screen properly */
+  transform: translate(-50%, -50%);
+}
+.containerAuth::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+}
 .auth-title {
   font-size: 2.5rem;
   margin-bottom: 2rem;
@@ -580,11 +632,21 @@ button {
 }
 
 .auth-form {
-  min-height: 50vh;
-  padding: 2rem 3rem;
+  position: absolute;
+  min-height: 30vh;
+  /* padding: 2rem 2rem; */
   border-radius: 1rem;
   width: 90%;
   max-width: 400px;
+}
+@media screen and (max-width: 768px) {
+  .auth-form {
+    margin-top: 90px;
+    height: auto;
+  }
+  .loginbtn {
+    margin-top: 15px;
+  }
 }
 
 .auth-form input {
@@ -1023,8 +1085,6 @@ button {
   font-size: 20px;
 }
 .ledgertxtarw {
-  color: yellow; /* Text fill color */
-  -webkit-text-stroke: 1px red; /* Outline color + thickness */
   font-weight: 700;
   font-size: 20px;
 }
@@ -1038,7 +1098,14 @@ button {
     box-shadow 0.25s ease;
   will-change: width;
 }
+
 .sticky:hover,
 .sticky:focus {
-  width: 400px;
+  width: 270px;
+}
+
+@media screen and (max-width: 768px) {
+  .sticky {
+    width: 270px;
+  }
 }
