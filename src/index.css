@@ -640,10 +640,10 @@ button {
   max-width: 400px;
 }
 @media screen and (max-width: 768px) {
-  .auth-form {
+  /* .auth-form {
     margin-top: 50px;
     
-  }
+  } */
   .loginbtn {
     margin-top: 15px;
   }
