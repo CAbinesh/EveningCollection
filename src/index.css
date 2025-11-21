@@ -640,10 +640,9 @@ button {
   max-width: 400px;
 }
 @media screen and (max-width: 768px) {
-  /* .auth-form {
-    margin-top: 50px;
-    
-  } */
+ .containerAuth video{
+  height: 100dvh;
+ }
   .loginbtn {
     margin-top: 15px;
   }
