@@ -99,7 +99,7 @@ function Auth() {
               : "Already have an account? Login"}
           </button>
 
-          {error && <p style={{ color: "red" }}>{error}</p>}
+          {error && <p style={{ color: "orange" }}>{error}</p>}
         </div>
       </div>
     </div>
