@@ -27,7 +27,7 @@ function Home() {
   return (
     <div style={{ minWidth: "auto" }}>
       <div className="container">
-        <video autoPlay playsInline disablePictureInPicture muted>
+        <video autoPlay playsInline disablePictureInPicture muted loop>
           <source src={PreviewVideo} />
           Your browser does not support the video tag.
         </video>

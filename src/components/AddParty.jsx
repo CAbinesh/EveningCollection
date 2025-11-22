@@ -92,15 +92,16 @@ function AddParty() {
       </button>
 
       <div className="form1">
+       
         <form onSubmit={handleSubmit}>
-          {/* Name Input */}
-          <h1
-            className="title"
-            style={{ justifyContent: "center", display: "flex" }}
-          >
+           <h1
+            className="formtitle">
             ADD USER
           </h1>
-          <label>Name:</label>
+          {/* Name Input */}
+          
+          <div className="form-Group">
+            <label>Name:</label>
           <input
             type="text"
             value={name}
@@ -108,8 +109,10 @@ function AddParty() {
             placeholder="Enter Name"
             required
           />
+          </div>
           {/* DC DcNo */}
-          <label>DC.No:</label>
+          <div className="form-Group">
+            <label>DC.No:</label>
           <input
             type="text"
             value={dcNo}
@@ -117,8 +120,10 @@ function AddParty() {
             placeholder="Enter DC.NO"
             required
           />
+          </div>
           {/* loanamount */}
-          <label>Amount:</label>
+          <div className="form-Group">
+            <label>Amount:</label>
           <input
             type="text"
             value={loanAmount}
@@ -126,8 +131,10 @@ function AddParty() {
             placeholder="Enter Amount"
             required
           />
+          </div>
           {/* intereset */}
-          <label>Interest %:</label>
+          <div className="form-Group">
+            <label>Interest %:</label>
           <input
             type="text"
             value={interest}
@@ -135,17 +142,29 @@ function AddParty() {
             placeholder="Enter Interest Amount"
             required
           />
+          </div>
           {/* Start Date */}
-          <label>Start Date:</label>
+          <div className="form-Group">
+            <label>Start Date:</label>
           <input
             type="date"
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
             required
           />
+          </div>
+          <div className="form-Group">
+            <label>End Date:</label>
+          <input
+            type="date"
+            value={endDate}
+            onChange={(e) => setEndDate(e.target.value)}
+            readOnly
+            required
+          />
+          </div>
           {/* Radio Options */}
-          {/* Radio Options */}
-          <div
+          <div className="full-width"
             style={{
               display: "flex",
               flexDirection: "column",
@@ -153,8 +172,9 @@ function AddParty() {
               marginTop: "10px",
             }}
           >
+            
             <label style={{ marginBottom: "8px" }}>Select Duration:</label>
-            <div
+            <div className="radio-opt"
               style={{
                 display: "flex",
                 gap: "20px",
@@ -183,16 +203,8 @@ function AddParty() {
               </label>
             </div>
           </div>
-          {/* End Date */}
-          <label>End Date:</label>
-          <input
-            type="date"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
-            readOnly
-            required
-          />
-
+          
+          
           {/* Buttons */}
           <div className="buttonss">
             <button className="submitbtn" type="submit">
