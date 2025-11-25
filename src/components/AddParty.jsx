@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Home from "../assets/Preview12.png";
+
 
 // import Profile from "./Profile";
 
@@ -77,6 +79,7 @@ function AddParty() {
     <div
   className="wallpaper"
     >
+       <img className="logoauths" src={Home} alt="My App Logo" />
       <button
         className="bckbtn"
         style={{ marginLeft: "10px", marginTop: "10px" }}

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import PreviewVideo from "../assets/Preview.webm"; // ✅ import video
+import PreviewVideo from "../assets/Preview.png"; // ✅ import video
 import { AuthContext } from "../App";
 
 function Home() {
@@ -27,10 +27,7 @@ function Home() {
   return (
     <div style={{ minWidth: "auto" }}>
       <div className="container">
-        <video autoPlay playsInline disablePictureInPicture muted loop>
-          <source src={PreviewVideo} />
-          Your browser does not support the video tag.
-        </video>
+       <img src={PreviewVideo} alt="logo" style={{height:"350px",width:"350px"}} />
       </div>
       <div className="maincontainer">
         <div className="btn" onClick={() => navigate("/DC")}>

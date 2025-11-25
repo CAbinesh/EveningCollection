@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import Home from "../assets/Preview12.png";
 function Ledger() {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
@@ -68,6 +68,8 @@ function Ledger() {
 
   return (
     <div className="wallpaper1" style={{ minHeight: "100vh" }}>
+      <img className="logoauths" src={Home} alt="My App Logo" />
+
       <h1 className="title">Ledger</h1>
 
       <div
@@ -87,6 +89,7 @@ function Ledger() {
             arrow_back
           </span>
         </button>
+         
         <br />
 
         <input
@@ -104,7 +107,6 @@ function Ledger() {
           placeholder="🔎 Search by name,dcNo,or date (YYYY-MM-DD)..."
         />
       </div>
-
       <div className="ledgerContainer">
         {Object.keys(groupedEntries).length === 0 ? (
           <p style={{ fontStyle: "italic" }}>No entries found.</p>

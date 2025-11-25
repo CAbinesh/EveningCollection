@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import Home from "../assets/Preview12.png";
 function Profiles() {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
@@ -30,6 +30,7 @@ function Profiles() {
   );
   return (
     <div className="wallpaper1" style={{minHeight:'100vh'}}>
+       <img className="logoauths" src={Home} alt="My App Logo" />
       <h1 className="title">Profiles</h1>
       <div className="sticky-box" style={{ position: "sticky", top: 0,zIndex:999 }}>
         <button

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Home from "../assets/Preview12.png";
 function DC(props) {
   const [dcNo, setDcNo] = useState("");
   const [amount, setAmount] = useState("");
@@ -41,6 +42,8 @@ function DC(props) {
 
   return (
     <div className="wallpaper">
+      <img className="logoauths" src={Home} alt="My App Logo" />
+
       <div className="form">
         <div className="childdcbtn">
           <button className="bckbtn" type="button" onClick={() => navigate(-1)}>
@@ -53,7 +56,7 @@ function DC(props) {
           </button>
         </div>
 
-        <form style={{marginTop:'90px'}} onSubmit={handleSubmit}>
+        <form style={{ marginTop: "90px" }} onSubmit={handleSubmit}>
           <input
             type="text"
             value={dcNo}

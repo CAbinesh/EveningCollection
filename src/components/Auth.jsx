@@ -55,12 +55,9 @@ function Auth() {
             Your browser does not support the video tag.
           </video>
         </div>
-        <img
-          className="logoauth"
-          src={Home}
-          alt="My App Logo"
-          
-        />
+
+        <img className="logoauth" src={Home} alt="My App Logo" />
+
         <div className="auth-form">
           {/* Logo wrapper */}
 
@@ -91,8 +88,7 @@ function Auth() {
             />
             <button type="submit">{isLogin ? "Login" : "Sign Up"}</button>
           </form>
-          
-          
+
           <button className="loginbtn" onClick={() => setIsLogin(!isLogin)}>
             {isLogin
               ? "Need an account? Sign Up"

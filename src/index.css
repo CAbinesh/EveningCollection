@@ -623,14 +623,32 @@ button {
   font-family: sans-serif;
 }
 .auth-container img {
-  height: 60px;
-  width: 200px;
+  height: 150px;
+  width: 150px;
+  position: absolute;
+  background: transparent;
+  top: 15px;
+  right: 10px;
+}
+
+.logoauths{
+   height: 100px;
+  width: 100px;
   position: absolute;
   background: transparent;
   top: 15px;
   right: 10px;
 }
 @media screen and (max-width: 768px) {
+  .logoauths {
+    height: 80px;
+    width: 80px;
+    position: relative;
+    margin-left: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .auth-container {
     position: relative;
   }
