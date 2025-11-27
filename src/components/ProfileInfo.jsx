@@ -235,7 +235,7 @@ function ProfileInfo({ profile, entries }) {
                 <button
                   className="btn"
                   onClick={() => {
-                    handleDelete(user.id); // ✅ logout only when confirmed
+                    handleDelete(user._id); // ✅ logout only when confirmed
                     setShowDeleteConfirm(false);
                   }}
                 >
