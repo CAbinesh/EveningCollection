@@ -1,6 +1,7 @@
-import React, { useContext, useState } from "react";
+
+import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import PreviewVideo from "../assets/Preview.png"; // ✅ import video
+import PreviewImg from "../assets/Preview.png"; // ✅ import video
 import { AuthContext } from "../App";
 
 function Home() {
@@ -8,7 +9,14 @@ function Home() {
   const { setUser } = useContext(AuthContext);
   const API_URL = import.meta.env.VITE_API_URL;
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
+  const [time, setTime] = useState(new Date());
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(new Date());
+    }, 1000);
 
+    return () => clearInterval(interval);
+  }, []);
   const handleLogout = async () => {
     //   const confirmed = window.confirm("Are you sure you want to logout?");
     // if (!confirmed) return;
@@ -27,19 +35,32 @@ function Home() {
   return (
     <div style={{ minWidth: "auto" }}>
       <div className="container">
-       <img src={PreviewVideo} alt="logo" style={{height:"350px",width:"350px"}} />
+        <div className="date-Time">
+          {time.toLocaleDateString("en-IN", {
+            weekday: "short",
+            day: "2-digit",
+            month: "short",
+            year: "numeric",
+          })}
+          {" - "}[{time.toLocaleTimeString("en-IN")}]
+        </div>
+        <img
+          src={PreviewImg}
+          alt="logo"
+          style={{ height: "350px", width: "350px" }}
+        />
       </div>
       <div className="maincontainer">
-        <div className="btn" onClick={() => navigate("/DC")}>
+        <div className="btn1" onClick={() => navigate("/DC")}>
           DC
         </div>
-        <div className="btn" onClick={() => navigate("/Ledger")}>
+        <div className="btn2" onClick={() => navigate("/Ledger")}>
           Ledger
         </div>
-        <div className="btn" onClick={() => navigate("/Profiles")}>
+        <div className="btn3" onClick={() => navigate("/Profiles")}>
           Profile
         </div>
-        <div className="btn" onClick={() => navigate("/AddParty")}>
+        <div className="btn4" onClick={() => navigate("/AddParty")}>
           Add User
         </div>
         <div
@@ -52,11 +73,11 @@ function Home() {
         {showLogoutConfirm && (
           <div className="modalBackdrop">
             <div className="modalBox">
-              <h3 style={{color:'red'}}>Confirm Logout</h3>
-              <p style={{color:'black'}}>Are you sure you want to logout?</p>
+              <h3 style={{ color: "red" }}>Confirm Logout</h3>
+              <p style={{ color: "black" }}>Are you sure you want to logout?</p>
               <div className="modalButtons">
                 <button
-                  className="btn"
+                  className="logoutbtn"
                   onClick={() => {
                     handleLogout(); // ✅ logout only when confirmed
                     setShowLogoutConfirm(false);
@@ -65,7 +86,7 @@ function Home() {
                   Yes
                 </button>
                 <button
-                  className="btn"
+                  className="logoutbtn"
                   onClick={() => setShowLogoutConfirm(false)}
                 >
                   Cancel
@@ -75,9 +96,16 @@ function Home() {
           </div>
         )}
       </div>
-      <div className="footer">
-         © 2025 MyWebsite. All rights reserved.
+      <div className="splContainer">
+        <h2 style={{marginTop:0}}>Spl Releases</h2>
+        <div className="btn5">
+          <a href="https://thandalfront.onrender.com/">Thandel</a>
+        </div>
+        <div className="btn5">
+          <a href="https://thandalfront.onrender.com/">Thandel</a>
+        </div>
       </div>
+      <div className="footer">© 2025 MyWebsite. All rights reserved.</div>
     </div>
   );
 }

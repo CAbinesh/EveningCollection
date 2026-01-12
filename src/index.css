@@ -30,6 +30,15 @@
   --white: #ffffff;
   --light-silver: #f0f0f0;
   --steel-blue: #4682b4;
+  --surface-sky: #9be7ff;
+  --sun-glint: #ffd56b;
+  --aqua-surface: #4dd6ff;
+  --ocean-blue: #1cb5e0;
+  --steel-blue: #2e5f9e;
+  --cold-teal: #1f7a8c;
+  --deep-ocean: #0a3d62;
+  --abyss-blue: #061a2d;
+  --black-water: #020b14;
 }
 :root {
   --glass-bg: rgba(255, 255, 255, 0.12); /* light glass */
@@ -42,7 +51,6 @@
 
 body {
   color: white;
-  background-color: var(--light-silver);
   font-family: "Saira", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -76,13 +84,12 @@ tbody {
 }
 
 .maincontainer {
-  display: flex;
-  flex-wrap: wrap;
-  min-height: 70vh;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 100px;
   justify-content: center;
-  align-items: center;
   gap: 50px;
-  align-items: baseline;
+  align-items: stretch;
   background: radial-gradient(
       circle at top,
       #ffd56b,
@@ -90,10 +97,17 @@ tbody {
       transparent 70%
     ),
     linear-gradient(
-      to bottom,
-      #ff6a00 1%,
-      var(--steel-blue),
-      var(--electric-blue)
+  to bottom,
+  #ff6a00 0%,        /* warm sunset glow at horizon */
+  var(--steel-blue) 8%, 
+  var(--electric-blue) 15%, 
+  #4dd6ff 25%,       /* bright surface water */
+  #1cb5e0 40%,       /* mid-depth aqua */
+  #2e5f9e 55%,       /* deeper blue */
+  #1f7a8c 70%,       /* teal shadows */
+  #0a3d62 100%       /* deep sea base */
+
+
     );
   padding: 20px;
   border-top: 1px dashed rgba(192, 192, 192, 0.313);
@@ -106,11 +120,18 @@ tbody {
 }
 .footer {
   text-align: center;
-  margin-top: 0;
-  background: linear-gradient(to bottom, var(--electric-blue));
-}
+  height: 79px;
+  background-image:url("src/assets/rabs.png");
+  background-size: contain; 
+  background-repeat: no-repeat;
+
+@media screen and (max-width:768px) {
+  height: auto;
+}}
 .container {
   display: flex;
+  flex-direction: column;
+  position: relative;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -125,11 +146,21 @@ tbody {
     ),
     linear-gradient(to top, #ff7e5f, #feb47b, #86a8e7);
 }
-
-.container video {
-  width: 450px;
-  height: 450px;
-  object-fit: contain;
+.date-Time {
+  display: flex;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  justify-content: flex-start;
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  color: #ffffff;
+  background: #000;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid #f9a005;
+  display: inline-block;
 }
 
 /* MOBILE FIX */
@@ -137,13 +168,12 @@ tbody {
   .container {
     padding: 30px 0;
   }
-
-  .container video {
-    width: 100%;       /* take full mobile width */
-    max-width: 350px;  /* limit size */
-    margin: 0;         /* remove wrong margins */
-    height: auto;
+  .date-Time {
+    font-size: 0.5rem;
+    top: 5px;
+    right: 5px;
   }
+ 
 }
 
 .form {
@@ -216,26 +246,6 @@ tbody {
     width: 90%;
   }
 }
-
-/* @media screen and (max-width: 640px) {
-  .form1 {
-    min-width: 200px;
-  }
-  .form {
-    background-image: none;
-  }
-} */
-
-/* Style the input */
-/* .form1 input {
-  margin: 10px 0;
-  width: 80%;
-  max-width: 300px;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  display: block;
-} */
 
 form {
   border: 2px solid var(--electric-blue);
@@ -337,9 +347,136 @@ input[type="date"]:focus {
 }
 /* Button for Home */
 /* From Uiverse.io by iZOXVL */
-.btn {
+.btn1,
+.btn2,
+.btn3,
+.btn4,
+.btn5 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 15px;
+  padding: 15px 30px;
+  text-align: center;
+  letter-spacing: 1px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: ease-out 0.5s;
+  border-radius: 10px;
+  color: #fff;
+  border: 1.5px solid rgba(255, 255, 255, 0.573);
+  box-shadow: 0 8px 30px rgba(255, 255, 255, 0.361),
+    inset 0 0 0 rgba(255, 255, 255, 0.395);
+  font-family: "Boldonse", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.8rem;
+}
+
+.btn1:hover,
+.btn2:hover,
+.btn3:hover,
+.btn4:hover,
+.btn5:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+  box-shadow: inset -530px 0 0 0 white;
+  border: 5px inset black;
+  border-radius: 20px;
+  color: #000;
+}
+
+.btn1:active,
+.btn2:active,
+.btn3:active,
+.btn4:active,
+.btn5:active {
+  transform: scale(1);
+}
+.btn1 {
+  grid-column: span 1;
+}
+.btn2 {
+  grid-row: span 2;
+}
+.btn3 {
+  grid-row: span 3;
+}
+.btn4 {
+  grid-row: span 3;
+}
+.btn5 {
+  background-image: url("src/assets/logo.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  grid-row: span 4;
+  color: blue;
+  text-decoration: dotted;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* btn for logout */
+.btnLogout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 15px;
+  padding: 15px 30px;
+  text-align: center;
+  letter-spacing: 1px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: ease-out 0.5s;
+  border-radius: 10px;
+  color: #f70303;
+  border: 1.5px solid rgba(255, 77, 77, 0.6);
+  background: rgba(255, 77, 77, 0.15);
+  box-shadow: 0 8px 30px rgba(255, 77, 77, 0.25);
+  font-family: "Boldonse", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.8rem;
+  grid-row: span 1;
+}
+
+.btnLogout:hover {
+  background: rgba(255, 77, 77, 0.35);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: inset 530px 0 0 0 #fc0202;
+  border: 5px solid black;
+  border-radius: 10px;
+  border-style: ridge;
+}
+
+.btnLogout:active {
+  transform: scale(1);
+}
+@media (max-width: 640px) {
+  .btn1,
+  .btn2,
+  .btn3,
+  .btn4,
+  .btn5 {
+    display: block;
+    margin-top: 10px;
+    height: 50px;
+    font-size: 1.4rem;
+  }
+  .btnLogout {
+    display: block;
+    margin-top: 10px;
+  }
+}
+.logoutbtn {
   position: relative;
   display: inline-block;
+  align-items: center;
+  justify-content: center;
   margin: 15px;
   padding: 15px 30px;
   text-align: center;
@@ -354,62 +491,19 @@ input[type="date"]:focus {
   font-family: "Boldonse", system-ui;
   font-weight: 400;
   font-style: normal;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
 }
 
-.btn:hover {
+.logoutbtn:hover {
   background: linear-gradient(to right, #c0c062, rgb(245, 33, 33));
-  box-shadow: inset -190px 0 0 0 white;
+  box-shadow: inset -530px 0 0 0 white;
   border-radius: 20px;
   color: #000;
 }
 
-.btn:active {
+.logoutbtn:active {
   transform: scale(1);
 }
-/* btn for logout */
-.btnLogout {
-  position: relative;
-  display: inline-block;
-  margin: 15px;
-  padding: 15px 30px;
-  text-align: center;
-  letter-spacing: 1px;
-  text-decoration: none;
-  background-color: #000000;
-  cursor: pointer;
-  transition: ease-out 0.5s;
-  border: 2.5px solid #f90505;
-  border-radius: 10px;
-  color: red;
-  font-family: "Boldonse", system-ui;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 1.4rem;
-}
-
-.btnLogout:hover {
-  color: white;
-  background: linear-gradient(to right, #fbfbf8, #f7f5f6);
-  box-shadow: inset 180px 0 0 0 #fc0202;
-  border-radius: 10px;
-  border-style: ridge;
-}
-
-.btnLogout:active {
-  transform: scale(0.9);
-}
-@media (max-width: 640px) {
-  .btn {
-    display: block;
-    margin-top: 10px;
-  }
-  .btnLogout {
-    display: block;
-    margin-top: 10px;
-  }
-}
-
 /* btn for submit */
 button {
   cursor: pointer;
@@ -631,8 +725,8 @@ button {
   right: 10px;
 }
 
-.logoauths{
-   height: 100px;
+.logoauths {
+  height: 100px;
   width: 100px;
   position: absolute;
   background: transparent;
@@ -1121,7 +1215,10 @@ button {
   justify-content: space-around;
 }
 
-.modalButtons .btn {
+.modalButtons .btn1,
+.btn2,
+.btn3,
+.btn4 {
   padding: 8px 20px;
   border-radius: 6px;
   cursor: pointer;
@@ -1167,5 +1264,25 @@ button {
 @media screen and (max-width: 768px) {
   .sticky {
     width: 270px;
+  }
+}
+.splContainer {
+  display: grid;
+  grid-auto-rows: 50px;
+  grid-template-columns: repeat(2, 1fr);
+  min-height: 100vh;
+  background: linear-gradient(
+  180deg,
+  #0a3d62 0%,
+  #08304d 40%,
+  #061a2d 65%,
+  rgb(0, 0, 23) 85%,
+  #000000 100%
+);
+}
+@media screen and (max-width:768px){
+  .splContainer{
+    display: block;
+    margin-top: 0;
   }
 }
