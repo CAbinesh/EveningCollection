@@ -1,8 +1,10 @@
-
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import PreviewImg from "../assets/Preview.png"; // ✅ import video
 import { AuthContext } from "../App";
+import seaBg from "../assets/logo.png";
+import seaBg2 from "../assets/kimple.png";
+import trynow from "../assets/trynow.png";
 
 function Home() {
   const navigate = useNavigate();
@@ -53,14 +55,14 @@ function Home() {
       <div className="maincontainer">
         <div className="btn1" onClick={() => navigate("/DC")}>
           DC
+        </div>{" "}
+        <div className="btn4" onClick={() => navigate("/Profiles")}>
+          Profile
         </div>
         <div className="btn2" onClick={() => navigate("/Ledger")}>
           Ledger
         </div>
-        <div className="btn3" onClick={() => navigate("/Profiles")}>
-          Profile
-        </div>
-        <div className="btn4" onClick={() => navigate("/AddParty")}>
+        <div className="btn3" onClick={() => navigate("/AddParty")}>
           Add User
         </div>
         <div
@@ -69,7 +71,6 @@ function Home() {
         >
           Logout
         </div>
-
         {showLogoutConfirm && (
           <div className="modalBackdrop">
             <div className="modalBox">
@@ -96,15 +97,51 @@ function Home() {
           </div>
         )}
       </div>
+      <div className="trynow">
+        <img src={trynow} alt="Try Now" />
+      </div>
+
       <div className="splContainer">
-        <h2 style={{marginTop:0}}>Spl Releases</h2>
-        <div className="btn5">
-          <a href="https://thandalfront.onrender.com/">Thandel</a>
+        <div
+          className="card"
+          style={{
+            backgroundImage: `url(${seaBg})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+
+            backgroundRepeat: "no-repeat",
+          }}
+        >
+          <p className="heading">Thandel</p>
+          <div className="overlay"></div>
+          <a className="card-btn" href="https://thandalfront.onrender.com/">
+            ↗️
+          </a>
         </div>
-        <div className="btn5">
-          <a href="https://thandalfront.onrender.com/">Thandel</a>
+
+        <div
+          className="card"
+          style={{
+            backgroundImage: `url(${seaBg2})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+
+            backgroundRepeat: "no-repeat",
+          }}
+        >
+          <p className="heading"></p>
+          <div className="overlay"></div>
+          <a
+            className="card-btn"
+            href="https://thandalfront.onrender.com/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            ↗️
+          </a>
         </div>
       </div>
+
       <div className="footer">© 2025 MyWebsite. All rights reserved.</div>
     </div>
   );

@@ -5,6 +5,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
 @import url("https://fonts.googleapis.com/css2?family=Kalnia+Glaze:wdth,wght@125,100..700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap");
+
+
 /* for page titles */
 .title {
   font-family: "Honk", system-ui;
@@ -97,17 +99,15 @@ tbody {
       transparent 70%
     ),
     linear-gradient(
-  to bottom,
-  #ff6a00 0%,        /* warm sunset glow at horizon */
-  var(--steel-blue) 8%, 
-  var(--electric-blue) 15%, 
-  #4dd6ff 25%,       /* bright surface water */
-  #1cb5e0 40%,       /* mid-depth aqua */
-  #2e5f9e 55%,       /* deeper blue */
-  #1f7a8c 70%,       /* teal shadows */
-  #0a3d62 100%       /* deep sea base */
-
-
+      to bottom,
+      #ff6a00 0%,
+      /* warm sunset glow at horizon */ var(--steel-blue) 8%,
+      var(--electric-blue) 15%,
+      #4dd6ff 25%,
+      /* bright surface water */ #1cb5e0 40%,
+      /* mid-depth aqua */ #2e5f9e 55%,
+      /* deeper blue */ #1f7a8c 70%,
+      /* teal shadows */ #0a3d62 100% /* deep sea base */
     );
   padding: 20px;
   border-top: 1px dashed rgba(192, 192, 192, 0.313);
@@ -121,13 +121,14 @@ tbody {
 .footer {
   text-align: center;
   height: 79px;
-  background-image:url("src/assets/rabs.png");
-  background-size: contain; 
+  background-image: url("src/assets/rabs.png");
+  background-size: contain;
   background-repeat: no-repeat;
 
-@media screen and (max-width:768px) {
-  height: auto;
-}}
+  @media screen and (max-width: 768px) {
+    height: auto;
+  }
+}
 .container {
   display: flex;
   flex-direction: column;
@@ -173,7 +174,6 @@ tbody {
     top: 5px;
     right: 5px;
   }
- 
 }
 
 .form {
@@ -350,14 +350,12 @@ input[type="date"]:focus {
 .btn1,
 .btn2,
 .btn3,
-.btn4,
-.btn5 {
+.btn4 {
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 15px;
   padding: 15px 30px;
-  text-align: center;
   letter-spacing: 1px;
   text-decoration: none;
   cursor: pointer;
@@ -373,27 +371,61 @@ input[type="date"]:focus {
   font-size: 1.8rem;
 }
 
-.btn1:hover,
-.btn2:hover,
-.btn3:hover,
-.btn4:hover,
-.btn5:hover {
-  background: rgba(255, 255, 255, 0.25);
+.btn1:hover {
+
+  font-size: 104px;
+  background-image: url("src/assets/btn1.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
   transform: translateY(-2px);
-  box-shadow: inset -530px 0 0 0 white;
+    border: 5px inset black;
+  border-radius: 20px;
+  color: #0000007e;
+}
+.btn2:hover {
+  
+  font-size: 44px;
+  background-image: url("src/assets/btn2.gif");
+  background-size: cover;
+  background-position: center;
+  align-items: flex-end;
+  transform: translateY(-2px);
   border: 5px inset black;
   border-radius: 20px;
-  color: #000;
+  color:#ffffff7e;
+}
+
+.btn4:hover {
+  font-size: 44px;
+  background-image: url("src/assets/btn4.gif");
+  background-size: cover;
+  justify-content: center;
+align-items: flex-end;
+  transform: translateY(-2px);
+  border: 5px inset black;
+  border-radius: 20px;
+  color: #0000007e;
+}
+.btn3:hover {
+ 
+  font-size: 44px;
+  background-image: url("src/assets/btn3.gif");
+  background-size: cover;
+  transform: translateY(-2px);
+  align-items: flex-end;
+  border: 5px inset black;
+  border-radius: 20px;
+  color:#0000007e;
 }
 
 .btn1:active,
 .btn2:active,
 .btn3:active,
-.btn4:active,
-.btn5:active {
+.btn4:active {
   transform: scale(1);
 }
 .btn1 {
+  grid-row: span 2;
   grid-column: span 1;
 }
 .btn2 {
@@ -405,19 +437,7 @@ input[type="date"]:focus {
 .btn4 {
   grid-row: span 3;
 }
-.btn5 {
-  background-image: url("src/assets/logo.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  grid-row: span 4;
-  color: blue;
-  text-decoration: dotted;
-}
-a {
-  text-decoration: none;
-  color: inherit;
-}
+
 
 /* btn for logout */
 .btnLogout {
@@ -440,14 +460,15 @@ a {
   font-weight: 400;
   font-style: normal;
   font-size: 1.8rem;
-  grid-row: span 1;
+  grid-row: span 2;
+  grid-column: span 1;
 }
 
 .btnLogout:hover {
   background: rgba(255, 77, 77, 0.35);
   color: #fff;
   transform: translateY(-2px);
-  box-shadow: inset 530px 0 0 0 #fc0202;
+  box-shadow: inset 800px 0 0 0 #fc0202;
   border: 5px solid black;
   border-radius: 10px;
   border-style: ridge;
@@ -462,14 +483,13 @@ a {
   .btn3,
   .btn4,
   .btn5 {
-    display: block;
-    margin-top: 10px;
+    display: flex;              /* ❗ keep flex */
+    justify-content: center;    /* center horizontally */
+    align-items: flex-start;    /* top */
     height: 50px;
     font-size: 1.4rem;
-  }
-  .btnLogout {
-    display: block;
     margin-top: 10px;
+    padding-top: 8px;           /* spacing from top */
   }
 }
 .logoutbtn {
@@ -1218,7 +1238,8 @@ button {
 .modalButtons .btn1,
 .btn2,
 .btn3,
-.btn4 {
+.btn4,
+.btn5 {
   padding: 8px 20px;
   border-radius: 6px;
   cursor: pointer;
@@ -1267,22 +1288,183 @@ button {
   }
 }
 .splContainer {
-  display: grid;
-  grid-auto-rows: 50px;
-  grid-template-columns: repeat(2, 1fr);
   min-height: 100vh;
+  padding: 40px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  gap: 10px;
+  justify-items: center;
+  align-items: start;
+  grid-auto-rows: minmax(220px, auto);
   background: linear-gradient(
-  180deg,
-  #0a3d62 0%,
-  #08304d 40%,
-  #061a2d 65%,
-  rgb(0, 0, 23) 85%,
-  #000000 100%
-);
+    180deg,
+    #0a3d62 0%,
+    #08304d 35%,
+    #061a2d 60%,
+    rgb(0, 0, 23) 80%,
+    #000000 100%
+  );
 }
-@media screen and (max-width:768px){
-  .splContainer{
-    display: block;
-    margin-top: 0;
+
+/* BUTTON / CARD */
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .splContainer {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .card {
+    width: 150px;
+  }
+}
+/* From Uiverse.io by gharsh11032000 */
+.card {
+  margin-top: 80px;
+  position: relative;
+  width: 100%;
+  max-width: 350px;
+  min-height: 220px;
+
+  background: linear-gradient(
+    180deg,
+    #1ec9ff 0%,
+    /* bright surface light */ #0b6fa4 35%,
+    /* mid water */ #053053 70%,
+    /* deep water */ #020617 100% /* abyss */
+  );
+  border-radius: 10px;
+
+  display: flex;
+  padding: 16px 16px;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* TEXT */
+.heading {
+  font-size: clamp(48px, 5vw, 24px);
+  font-family: "Bungee Spice", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.para {
+  text-align: center;
+  color: #ffffff;
+  opacity: 0.8;
+  line-height: 1.4;
+  font-size: clamp(14px, 4vw, 16px);
+}
+
+/* OVERLAY */
+.overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+/* DESKTOP HOVER */
+.card:hover .overlay,
+.card:focus-within .overlay {
+  opacity: 1;
+}
+
+/* BUTTON */
+.card .card-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  font-weight: 600;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #ffffff;
+  border-radius: 50px;
+  cursor: pointer;
+  border: none;
+  opacity: 0;
+  z-index: 2;
+  text-decoration: none;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* SHOW BUTTON */
+.card:hover .card-btn,
+.card:focus-within .card-btn,
+.card:active .card-btn {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* BUTTON FEEDBACK */
+.card .card-btn:active {
+  transform: translate(-50%, -50%) scale(0.95);
+}
+
+/* OVERLAY */
+.overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none; /* 🔥 IMPORTANT */
+}
+
+.overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    180deg,
+    rgba(30, 201, 255, 0.35),
+    rgba(2, 6, 23, 0.85)
+  );
+  transform: scale(0);
+  transition: transform 0.5s ease;
+}
+
+/* OVERLAY SHOW */
+.card:hover .overlay::after,
+.card:focus-within .overlay::after,
+.card:active .overlay::after {
+  transform: scale(2);
+}
+
+/* MOBILE */
+@media (max-width: 480px) {
+  .card {
+    padding: 14px 18px;
+  }
+}
+.trynow {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.trynow img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* or cover */
+}
+@media screen and (max-width:324px){
+  .trynow {
+    height: 160px; /* reduce height instead of width */
+  }
+
+  .trynow img {
+    width: 100%;
+    height: 100%;
   }
 }
