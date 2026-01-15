@@ -119,7 +119,7 @@ tbody {
 }
 .footer {
   text-align: center;
-  height: 79px;
+  height: 100px;
 
   @media screen and (max-width: 768px) {
     height: auto;
@@ -1446,17 +1446,11 @@ button {
 }
 
 .trynow img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* or cover */
+width: 100%;
+  min-height: clamp(100px, 18vh, 260px);
+  min-height: clamp(100px, 60vh, 260px);
+  background-size: cover;      /* 👈 KEY */
+  background-position: center;
+  background-repeat: no-repeat;
 }
-@media screen and (max-width: 324px) {
-  .trynow {
-    height: 160px; /* reduce height instead of width */
-  }
 
-  .trynow img {
-    width: 100%;
-    height: 100%;
-  }
-}
