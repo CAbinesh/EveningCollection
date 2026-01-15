@@ -6,7 +6,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Kalnia+Glaze:wdth,wght@125,100..700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap");
 
-
 /* for page titles */
 .title {
   font-family: "Honk", system-ui;
@@ -121,9 +120,6 @@ tbody {
 .footer {
   text-align: center;
   height: 79px;
-  background-image: url("src/assets/rabs.png");
-  background-size: contain;
-  background-repeat: no-repeat;
 
   @media screen and (max-width: 768px) {
     height: auto;
@@ -372,50 +368,47 @@ input[type="date"]:focus {
 }
 
 .btn1:hover {
-
   font-size: 104px;
-  background-image: url("src/assets/btn1.gif");
+  background-image: url("/btn1.gif");
   background-repeat: no-repeat;
   background-size: cover;
   transform: translateY(-2px);
-    border: 5px inset black;
+  border: 5px inset black;
   border-radius: 20px;
   color: #0000007e;
 }
 .btn2:hover {
-  
   font-size: 44px;
-  background-image: url("src/assets/btn2.gif");
+  background-image: url("/btn2.gif");
   background-size: cover;
   background-position: center;
   align-items: flex-end;
   transform: translateY(-2px);
   border: 5px inset black;
   border-radius: 20px;
-  color:#ffffff7e;
+  color: #ffffff7e;
 }
 
 .btn4:hover {
   font-size: 44px;
-  background-image: url("src/assets/btn4.gif");
+  background-image: url("/btn4.gif");
   background-size: cover;
   justify-content: center;
-align-items: flex-end;
+  align-items: flex-end;
   transform: translateY(-2px);
   border: 5px inset black;
   border-radius: 20px;
   color: #0000007e;
 }
 .btn3:hover {
- 
   font-size: 44px;
-  background-image: url("src/assets/btn3.gif");
+  background-image: url("/btn3.gif");
   background-size: cover;
   transform: translateY(-2px);
   align-items: flex-end;
   border: 5px inset black;
   border-radius: 20px;
-  color:#0000007e;
+  color: #0000007e;
 }
 
 .btn1:active,
@@ -437,7 +430,6 @@ align-items: flex-end;
 .btn4 {
   grid-row: span 3;
 }
-
 
 /* btn for logout */
 .btnLogout {
@@ -483,13 +475,13 @@ align-items: flex-end;
   .btn3,
   .btn4,
   .btn5 {
-    display: flex;              /* ❗ keep flex */
-    justify-content: center;    /* center horizontally */
-    align-items: flex-start;    /* top */
+    display: flex; /* ❗ keep flex */
+    justify-content: center; /* center horizontally */
+    align-items: flex-start; /* top */
     height: 50px;
     font-size: 1.4rem;
     margin-top: 10px;
-    padding-top: 8px;           /* spacing from top */
+    padding-top: 8px; /* spacing from top */
   }
 }
 .logoutbtn {
@@ -1458,7 +1450,7 @@ button {
   height: 100%;
   object-fit: cover; /* or cover */
 }
-@media screen and (max-width:324px){
+@media screen and (max-width: 324px) {
   .trynow {
     height: 160px; /* reduce height instead of width */
   }

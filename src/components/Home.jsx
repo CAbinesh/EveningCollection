@@ -5,6 +5,7 @@ import { AuthContext } from "../App";
 import seaBg from "../assets/logo.png";
 import seaBg2 from "../assets/kimple.png";
 import trynow from "../assets/trynow.png";
+import rabs from "../assets/rabs.png"
 
 function Home() {
   const navigate = useNavigate();
@@ -142,7 +143,9 @@ function Home() {
         </div>
       </div>
 
-      <div className="footer">© 2025 MyWebsite. All rights reserved.</div>
+      <div className="footer" style={{ backgroundImage: `url(${rabs})`,
+  backgroundSize: "contain",
+  backgroundRepeat: 'no-repeat'}}>© 2025 MyWebsite. All rights reserved.</div>
     </div>
   );
 }
