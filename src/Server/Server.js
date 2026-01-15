@@ -25,7 +25,6 @@ app.use(cookieParser());
 const corsOptions = {
   origin: 
   "https://eveningcollectionfront.onrender.com",
-
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
