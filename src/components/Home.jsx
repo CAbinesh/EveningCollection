@@ -115,7 +115,8 @@ function Home() {
         >
           <p className="heading">Thandel</p>
           <div className="overlay"></div>
-          <a className="card-btn" href="https://thandalfront.onrender.com/">
+          <a className="card-btn" href="https://thandalfront.onrender.com/" target="_blank"
+            rel="noreferrer">
             ↗️
           </a>
         </div>
@@ -134,7 +135,7 @@ function Home() {
           <div className="overlay"></div>
           <a
             className="card-btn"
-            href="https://thandalfront.onrender.com/"
+            href="https://kimplebackend-front.onrender.com/#/auth"
             target="_blank"
             rel="noreferrer"
           >
