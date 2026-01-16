@@ -183,6 +183,9 @@ tbody {
 }
 .form1 {
   width: 100%;
+  height: 100%;
+  margin-top: 100px;
+  margin-bottom: 100px;
   display: flex;
   justify-content: center; /* centers the form horizontally */
   align-items: center;
@@ -194,6 +197,7 @@ tbody {
   gap: 20px;
   width: 100%;
   max-width: 1000px;
+  min-height: 100vh;
   margin: auto;
   border-radius: 10px;
   box-sizing: border-box;
@@ -233,13 +237,20 @@ tbody {
 }
 
 /* Mobile: 1 input per row */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .form1 form {
     grid-template-columns: 1fr;
     max-width: 90%;
   }
+
   .form-Group input {
     width: 90%;
+  }
+}
+@media screen and (min-width: 768px) and (max-width:1023px)  {
+  .form1 form{
+    grid-template-columns: repeat(2,1fr);
+    max-width: 90%;
   }
 }
 
@@ -386,7 +397,7 @@ input[type="date"]:focus {
   transform: translateY(-2px);
   border: 5px inset black;
   border-radius: 20px;
-  color: #ffffff7e;
+  color: #000000ad;
 }
 
 .btn4:hover {
@@ -404,6 +415,7 @@ input[type="date"]:focus {
   font-size: 44px;
   background-image: url("/btn3.gif");
   background-size: cover;
+  background-position: center;
   transform: translateY(-2px);
   align-items: flex-end;
   border: 5px inset black;
@@ -1191,6 +1203,17 @@ button {
   background-image: url("../src/assets/img89.jpg");
   background-size: cover;
   background-position: center;
+  min-height: 100vh;
+}
+.AddPartyContainer .wallpaper{
+  min-height: 180vh;
+
+}
+@media screen and (max-width:767px) {
+  .AddPartyContainer .wallpaper{
+  min-height: 300vh;
+
+}
 }
 .wallpaper1 {
   background-image: url("../src/assets/img89.jpg");

@@ -76,7 +76,8 @@ function AddParty() {
   };
 
   return (
-    <div
+    <div className="AddPartyContainer">
+      <div
   className="wallpaper"
     >
        <img className="logoauths" src={Home} alt="My App Logo" />
@@ -216,6 +217,7 @@ function AddParty() {
           </div>
         </form>
       </div>
+    </div>
     </div>
   );
 }
