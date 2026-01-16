@@ -175,12 +175,11 @@ tbody {
 .form {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* align at the top */
   align-items: center;
   min-height: 100vh; /* don’t force full screen height */
-  padding: 20px;
   border-radius: 20px;
 }
+
 .form1 {
   width: 100%;
   height: 100%;
@@ -221,7 +220,7 @@ tbody {
   flex-direction: column;
 }
 
-.form-Gsroup label {
+.form-Group label {
   font-weight: bold;
   margin-bottom: 5px;
   text-align: center;
@@ -238,19 +237,41 @@ tbody {
 
 /* Mobile: 1 input per row */
 @media screen and (max-width: 767px) {
+
+  /* Center the FORM */
+  .form1 {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Single column grid */
   .form1 form {
+    display: grid;
     grid-template-columns: 1fr;
+    width: 100%;
     max-width: 90%;
   }
 
-  .form-Group input {
-    width: 90%;
+  /* Input group */
+  .form1 .form-Group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Inputs */
+  .form1 .form-Group input {
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
   }
 }
+
+  
+
 @media screen and (min-width: 768px) and (max-width:1023px)  {
   .form1 form{
     grid-template-columns: repeat(2,1fr);
-    max-width: 90%;
   }
 }
 
@@ -274,32 +295,7 @@ form {
   box-shadow: var(--glass-shadow);
   color: white;
 }
-@media screen and (max-width: 640px) {
-  form {
-    width: 90%; /* Use percentage for fluid width instead of fixed px */
-    max-width: 200px; /* Optional max width */
-    margin: 0 auto; /* Center the form */
-  }
 
-  form input {
-    width: 90%; /* Make input fill the form’s width */
-    box-sizing: border-box; /* Include padding and border in width */
-  }
-
-  .form {
-    width: 90%; /* Make the form responsive */
-    max-width: 200px; /* Optional max width */
-    margin: 0 auto; /* Center the form */
-  }
-
-  .form input {
-    width: 100%; /* Fill the form width */
-    max-width: 100%; /* Ensure it doesn’t exceed form */
-    margin: 10px 0; /* Keep your vertical spacing */
-    padding: 10px;
-    box-sizing: border-box; /* Include padding in width */
-  }
-}
 form {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   transform: translateZ(20px) rotateX(2deg);
@@ -735,7 +731,6 @@ button {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  /* background-image: url("../src/assets/im001.jpg"); */
   background-position: center;
   background-size: cover;
   font-family: sans-serif;
@@ -1211,7 +1206,7 @@ button {
 }
 @media screen and (max-width:767px) {
   .AddPartyContainer .wallpaper{
-  min-height: 300vh;
+  min-height: 180vh;
 
 }
 }
