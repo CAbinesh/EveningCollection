@@ -99,7 +99,10 @@ function Home() {
         )}
       </div>
       <div className="trynow">
-        <img src={trynow} alt="Try Now" />
+        <picture>
+           <img src={trynow} alt="Try Now" />
+        </picture>
+        
       </div>
 
       <div className="splContainer">

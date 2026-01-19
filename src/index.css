@@ -1457,18 +1457,19 @@ button {
 .trynow {
   width: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
   overflow: hidden;
 }
 
+.trynow picture,
 .trynow img {
- 
-  min-height: clamp(200px, 60vh, 260px);
+  width: 100%;
+  display: block;
 }
-@media screen and (max-width: 768px) {
-  .trynow {
-    width: 100%; /* reduce height instead of width */
-  }
-  
+
+.trynow img {
+  height: auto;          /* keep aspect ratio */
+  max-height: 260px;     /* optional */
+  object-fit: cover;    /* fill nicely */
 }
+
