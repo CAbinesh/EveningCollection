@@ -24,8 +24,8 @@ app.use(cookieParser());
 // In Render production, frontend URL must be correct
 const corsOptions = {
   origin: 
-  // "https://eveningcollectionfront.onrender.com",
-  "http://localhost:5173",
+  "https://eveningcollectionfront.onrender.com",
+  
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
