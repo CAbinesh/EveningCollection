@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../App"; // ✅ you already have AuthContext
 import Home from "../assets/Preview.png";
-import PreviewVideo from "../assets/Preview3.webm";
+import PreviewVideo from "../assets/Preview3.jpg";
 
 function Auth() {
   const [email, setEmail] = useState("");
@@ -50,10 +50,7 @@ function Auth() {
     <div>
       <div className="auth-container">
         <div className="containerAuth">
-          <video autoPlay playsInline disablePictureInPicture muted loop>
-            <source src={PreviewVideo} />
-            Your browser does not support the video tag.
-          </video>
+          <img src={PreviewVideo} alt="My App bg" />
         </div>
 
         <img className="logoauth" src={Home} alt="My App Logo" />
