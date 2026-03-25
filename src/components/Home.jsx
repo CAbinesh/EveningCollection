@@ -58,10 +58,10 @@ function Home() {
           DC
         </div>{" "}
         <div className="btn4" onClick={() => navigate("/Profiles")}>
-          Profile
+          Profiles
         </div>
         <div className="btn2" onClick={() => navigate("/Ledger")}>
-          ℮-Ledger
+          e-Ledger
         </div>
         <div className="btn3" onClick={() => navigate("/AddParty")}>
           Add User
