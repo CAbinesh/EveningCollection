@@ -61,7 +61,7 @@ function Home() {
           Profile
         </div>
         <div className="btn2" onClick={() => navigate("/Ledger")}>
-          e-Ledger
+          ℮-Ledger
         </div>
         <div className="btn3" onClick={() => navigate("/AddParty")}>
           Add User
