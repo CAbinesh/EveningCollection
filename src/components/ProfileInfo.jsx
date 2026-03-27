@@ -141,7 +141,7 @@ function ProfileInfo({ profile, entries }) {
               padding: "8px 0",
               borderBottom: "1px solid#1b3d81ff",
               fontWeight: 500,
-              color: "yellow",
+              color: "#222222",
             }}
           >
             DC.NO: <span style={{ fontWeight: 600 }}>{user.dcNo}</span>
