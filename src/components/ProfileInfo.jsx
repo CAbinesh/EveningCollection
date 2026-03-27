@@ -266,6 +266,7 @@ function ProfileInfo({ profile, entries }) {
                 marginTop: "8px",
                 borderCollapse: "collapse",
                 textAlign: "center",
+                color:"black"
               }}
             >
               <thead style={{ border: "3px solid black" }}>
@@ -274,7 +275,7 @@ function ProfileInfo({ profile, entries }) {
                   <th style={{color:"black"}}>Date</th>
                 </tr>
               </thead>
-              <tbody style={{ border: "3px solid white",color:'black' }}>
+              <tbody style={{ border: "3px solid black",color:'black' }}>
                 {matchedEntries.map((e, i) => (
                   <tr key={i}>
                     <td style={{color:"black"}}>{e.amount}</td>
