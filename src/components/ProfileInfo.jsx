@@ -268,17 +268,17 @@ function ProfileInfo({ profile, entries }) {
                 textAlign: "center",
               }}
             >
-              <thead style={{ border: "3px solid white" }}>
+              <thead style={{ border: "3px solid black" }}>
                 <tr>
-                  <th>Amount (₹)</th>
-                  <th>Date</th>
+                  <th style={{color:"black"}}>Amount (₹)</th>
+                  <th style={{color:"black"}}>Date</th>
                 </tr>
               </thead>
-              <tbody style={{ border: "3px solid white",color:'white' }}>
+              <tbody style={{ border: "3px solid white",color:'black' }}>
                 {matchedEntries.map((e, i) => (
                   <tr key={i}>
-                    <td>{e.amount}</td>
-                    <td>{new Date(e.date).toLocaleDateString()}</td>
+                    <td style={{color:"black"}}>{e.amount}</td>
+                    <td style={{color:"black"}}>{new Date(e.date).toLocaleDateString()}</td>
                   </tr>
                 ))}
 

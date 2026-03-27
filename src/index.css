@@ -1252,7 +1252,7 @@ button {
   }
 }
 .ledgertext {
-  color: rgb(0, 0, 0); /* Text fill color */
+  color: rgb(255, 255, 255); /* Text fill color */
   -webkit-text-stroke: 1px red; /* Outline color + thickness */
   font-weight: 900;
   font-size: 20px;
