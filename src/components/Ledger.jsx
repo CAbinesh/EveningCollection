@@ -121,7 +121,7 @@ function Ledger() {
               );
               return (
                 <div className="ledgerCard" key={dateKey}>
-                  <h3>
+                  <h3 style={{color:"black"}}>
                     Date:{" "}
                     {new Date(dateKey).toLocaleDateString(
                       undefined,
