@@ -382,7 +382,7 @@ input[type="date"]:focus {
   transform: translateY(-2px);
   border: 5px inset black;
   border-radius: 20px;
-  color: #0000007e;
+  color: #fffcfc7e;
 }
 .btn2:hover {
   font-size: 44px;
@@ -393,7 +393,7 @@ input[type="date"]:focus {
   transform: translateY(-2px);
   border: 5px inset black;
   border-radius: 20px;
-  color: #000000ad;
+color: #fffcfc7e;  
 }
 
 .btn4:hover {
@@ -405,7 +405,7 @@ input[type="date"]:focus {
   transform: translateY(-2px);
   border: 5px inset black;
   border-radius: 20px;
-  color: #0000007e;
+  color: #fffcfc7e;
 }
 .btn3:hover {
   font-size: 44px;
@@ -416,7 +416,7 @@ input[type="date"]:focus {
   align-items: flex-end;
   border: 5px inset black;
   border-radius: 20px;
-  color: #0000007e;
+  color: #fffcfc7e;
 }
 
 .btn1:active,
@@ -452,9 +452,9 @@ input[type="date"]:focus {
   cursor: pointer;
   transition: ease-out 0.5s;
   border-radius: 10px;
-  color: #f70303;
+  color: #000000;
   border: 1.5px solid rgba(255, 77, 77, 0.6);
-  background: rgba(255, 77, 77, 0.15);
+  background: rgba(255, 77, 77, 0.686);
   box-shadow: 0 8px 30px rgba(255, 77, 77, 0.25);
   font-family: "Boldonse", system-ui;
   font-weight: 400;
@@ -465,13 +465,17 @@ input[type="date"]:focus {
 }
 
 .btnLogout:hover {
-  background: rgba(255, 77, 77, 0.35);
-  color: #fff;
+ 
+  font-size: 44px;
+  background-image: url("/btn5.gif");
+  background-size: cover;
+  background-position: center;
   transform: translateY(-2px);
-  box-shadow: inset 800px 0 0 0 #fc0202;
-  border: 5px solid black;
-  border-radius: 10px;
-  border-style: ridge;
+  align-items: flex-end;
+  border: 5px inset black;
+  border-radius: 20px;
+  color: #ff0202;
+
 }
 
 .btnLogout:active {
