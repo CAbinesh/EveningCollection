@@ -76,7 +76,7 @@ function Home() {
         </div>
 
         <div className="btn2" onClick={() => navigate("/Ledger")}>
-          <h3 className="h3">e-Ledger</h3>
+          <h3 className="h3">Ledger</h3>
           <p className="p">Access and View Full Records</p>
           <span className="link">View →</span>
         </div>

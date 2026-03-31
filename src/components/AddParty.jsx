@@ -217,7 +217,16 @@ function AddParty() {
           </div>
         </form>
       </div>
+      <div className="centerLine"></div>
+      <div className="footer">© 2025 MyWebsite. All rights reserved.</div>
+      <div className="subFooter">
+        <h4>⁕ PrivacyPolicy</h4>
+        <h4>⁕ Terms and conditions</h4>
+        <h4>⁕ Contact Us</h4>
+      </div>
+      <div className="subFooterIcon"></div>
     </div>
+    
     </div>
   );
 }
