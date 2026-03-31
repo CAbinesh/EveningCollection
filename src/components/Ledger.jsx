@@ -121,7 +121,7 @@ function Ledger() {
               );
               return (
                 <div className="ledgerCard" key={dateKey}>
-                  <h3 style={{color:"black"}}>
+                  <h3 className="date">
                     Date:{" "}
                     {new Date(dateKey).toLocaleDateString(
                       undefined,
@@ -138,15 +138,15 @@ function Ledger() {
                           {" "}
                           <span className="ledgertext">
                             {entry.dcNo || "Deleted Profile"}
-                          </span>{" "}
-                          <span className="ledgertxtarw"> ⇛ </span>
+                          </span>{"    "}
+                          
                           <span className="ledgertext">
                             ₹{entry.amount.toLocaleString()}
                           </span>
                         </li>
                       ))}
                   </ul>
-                  <p style={{ fontWeight: "bold", color: "yellow" }}>
+                  <p style={{ fontWeight: "bold", color: "white" }}>
                     Total: ₹{totalAmount.toLocaleString()}
                   </p>
                 </div>

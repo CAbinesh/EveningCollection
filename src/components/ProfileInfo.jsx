@@ -278,8 +278,8 @@ function ProfileInfo({ profile, entries }) {
               <tbody style={{ border: "3px solid black",color:'black' }}>
                 {matchedEntries.map((e, i) => (
                   <tr key={i}>
-                    <td style={{color:"black"}}>{e.amount}</td>
-                    <td style={{color:"black"}}>{new Date(e.date).toLocaleDateString()}</td>
+                    <td style={{color:"white"}}>{e.amount}</td>
+                    <td style={{color:"white"}}>{new Date(e.date).toLocaleDateString()}</td>
                   </tr>
                 ))}
 

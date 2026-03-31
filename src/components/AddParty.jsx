@@ -100,7 +100,7 @@ function AddParty() {
         <form onSubmit={handleSubmit}>
            <h1
             className="formtitle">
-            ADD USER
+            Add User
           </h1>
           {/* Name Input */}
           

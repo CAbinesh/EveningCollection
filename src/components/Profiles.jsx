@@ -78,10 +78,10 @@ function Profiles() {
                 onClick={() => navigate(`/Profiles/${entry.dcNo}`)}
                 style={{ cursor: "pointer" }}
               >
-                <h3 style={{ color: "#191970" }}>{entry.dcNo}</h3>
+                <h2 style={{color:'white'}}>{entry.dcNo}</h2>
                 <h4 style={{ color: "black" }}>{entry.name}</h4>
 
-                <p style={{color:'red'}}>Tap to view entries</p>
+                <h5 className="taptext">Tap to view entries</h5>
               </div>
             ))
         ) : (

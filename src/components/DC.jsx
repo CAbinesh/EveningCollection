@@ -43,7 +43,7 @@ function DC(props) {
   return (
     <div className="wallpaper">
       <img className="logoauths" src={Home} alt="My App Logo" />
-
+ <h1 className="title">DC</h1>
       <div className="form">
         <div className="childdcbtn">
           <button className="bckbtn" type="button" onClick={() => navigate(-1)}>
