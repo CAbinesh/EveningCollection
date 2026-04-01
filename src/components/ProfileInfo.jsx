@@ -111,8 +111,8 @@ function ProfileInfo({ profile, entries }) {
             src={userpng}
             alt="Profile"
             style={{
-              width: "120px",
-              height: "120px",
+              width: "140px",
+              height: "140px",
               borderRadius: "50%",
               display: "block",
               margin: "0 auto 18px",
@@ -127,7 +127,7 @@ function ProfileInfo({ profile, entries }) {
               textAlign: "center",
               fontSize: "1.25rem",
               fontWeight: 700,
-              color: "#0c17dfff",
+              color: "white",
               marginBottom: "16px",
             }}
           >
@@ -266,16 +266,16 @@ function ProfileInfo({ profile, entries }) {
                 marginTop: "8px",
                 borderCollapse: "collapse",
                 textAlign: "center",
-                color:"black"
+                color:"white"
               }}
             >
-              <thead style={{ border: "3px solid black" }}>
+              <thead style={{ border: "3px solid white" }}>
                 <tr>
-                  <th style={{color:"black"}}>Amount (₹)</th>
-                  <th style={{color:"black"}}>Date</th>
+                  <th style={{color:"white"}}>Amount (₹)</th>
+                  <th style={{color:"white"}}>Date</th>
                 </tr>
               </thead>
-              <tbody style={{ border: "3px solid black",color:'black' }}>
+              <tbody style={{ border: "3px solid white",color:'white' }}>
                 {matchedEntries.map((e, i) => (
                   <tr key={i}>
                     <td style={{color:"white"}}>{e.amount}</td>
@@ -306,7 +306,7 @@ function ProfileInfo({ profile, entries }) {
           )}
         </div>
       </div>
-      <div className="centerLine"></div>
+      <div className="centerLine2"></div>
       <div className="footer">© 2025 MyWebsite. All rights reserved.</div>
       <div className="subFooter">
         <h4>⁕ PrivacyPolicy</h4>

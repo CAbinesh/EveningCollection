@@ -154,7 +154,7 @@ function Ledger() {
             })
         )}
       </div>
-      <div className="centerLine"></div>
+      <div className="centerLine2"></div>
       <div className="footer">© 2025 MyWebsite. All rights reserved.</div>
       <div className="subFooter">
         <h4>⁕ PrivacyPolicy</h4>

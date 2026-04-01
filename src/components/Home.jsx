@@ -1,6 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import PreviewImg from "../assets/Preview12.png"; // ✅ import video
+import Thandelimg from "../assets/Thandel.png";
+import NoteitImg from "../assets/Noteit.png";
 import { AuthContext } from "../App";
 
 function Home() {
@@ -86,7 +88,7 @@ function Home() {
           <p className="p">Create New User</p>
           <span className="link">View →</span>
         </div>
-
+<div className="btn5"></div>
         <div className="btnLogout" onClick={() => setShowLogoutConfirm(true)}>
           Logout
         </div>
@@ -95,7 +97,9 @@ function Home() {
           <div className="modalBackdrop">
             <div className="modalBox">
               <h2 style={{ color: "red" }}>Confirm Logout</h2>
-              <h5 style={{ color: "black" }}>Are you sure you want to logout?</h5>
+              <h5 style={{ color: "black" }}>
+                Are you sure you want to logout?
+              </h5>
               <div className="modalButtons">
                 <button
                   className="logoutbtn"
@@ -117,7 +121,50 @@ function Home() {
           </div>
         )}
       </div>
-      <div className="centerLine"></div>
+      <div className="centerLine1"></div>
+      <div className="Trylink">
+        <h3 className="ddh3">Explore More</h3>
+        <div className="noteit">
+          <div className="innerNoteit">
+            <img
+              src={NoteitImg}
+              alt="logo"
+              style={{ height: "70px", width: "70px" }}
+            />{" "}
+            <h2 className="linkh2">Note It</h2>
+             <p className="linkp">Capture your thoughts effortlessly. Try our notes app today.</p>
+          <a
+            className="linkButton"
+            href="https://kimplebackend-front.onrender.com/#/auth"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Try Now
+          </a>
+          </div>
+         
+        </div>
+        <div className="thandel">
+          <div className="innerThandel">
+            <img
+              src={Thandelimg}
+              alt="logo"
+              style={{ height: "70px", width: "70px" }}
+            />{" "}
+            <h2 className="linkh2">Thandel</h2>
+            <p className="linkp">Securely store and manage your financial data with ease.</p>
+            <a
+              className="linkButton"
+              href="https://thandalfront.onrender.com/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Try Now
+            </a>
+          </div>
+        </div>
+      </div>
+      <div className="centerLine2"></div>
       <div className="footer">© 2025 MyWebsite. All rights reserved.</div>
       <div className="subFooter">
         <h4>⁕ PrivacyPolicy</h4>
