@@ -404,7 +404,8 @@ input[type="date"]:focus {
 .btn1,
 .btn2,
 .btn3,
-.btn4,.btn5 {
+.btn4,
+.btn5 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -436,7 +437,7 @@ input[type="date"]:focus {
   position: relative;
   overflow: hidden;
 }
-.btn5{
+.btn5 {
   background-image: url("/cosmic.png");
   background-position: center;
   background-size: cover;
@@ -773,18 +774,18 @@ button {
   padding: 20px;
   min-height: 100vh;
 }
-
-@media screen and (max-width: 640px) {
-  .profile-details {
-    flex-direction: column; /* stack items vertically */
-    align-items: center; /* center horizontally */
-    justify-content: flex-start; /* avoid stretching */
-    min-height: auto;
-  }
+/* for profileinfo table */
+table {
+  background-color: #000000b9;
 }
+
 .profileInfo-card {
-  width: 20%;
-  height: 550px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  line-height: 5px;
+  width: 50%;
+  height: 5%;
   background-image: linear-gradient(
     135deg,
     #fefefeff 0%,
@@ -793,7 +794,8 @@ button {
     #c983ec90 100%
   );
   border-radius: 14px;
-  padding: 22px;
+  padding: 10px;
+  justify-items: center;
   border: 1px solid rgba(15, 23, 42, 0.53);
   box-shadow: 0 6px 20px rgba(9, 179, 236, 1);
   font-family:
@@ -806,9 +808,18 @@ button {
 
 /* Override for responsive or special case */
 @media screen and (max-width: 768px) {
+  .profile-details {
+    flex-direction: column; /* stack items vertically */
+    align-items: center; /* center horizontally */
+    justify-content: flex-start; /* avoid stretching */
+  }
+}
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  
   .profileInfo-card {
-    width: 50%;
-    height: auto;
+    width: 80%;
+    line-height: 5px;
+    justify-items: center;
   }
 }
 
@@ -1408,7 +1419,7 @@ ul li {
   margin-left: 50px;
   font-size: 25px;
 }
-.Trylink{
+.Trylink {
   margin-bottom: 40px;
 }
 .noteit {
@@ -1497,6 +1508,6 @@ ul li {
     letter-spacing: 0px;
   }
   .linkp {
-    letter-spacing:0px;
+    letter-spacing: 0px;
   }
 }

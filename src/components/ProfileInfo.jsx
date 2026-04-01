@@ -107,7 +107,7 @@ function ProfileInfo({ profile, entries }) {
       <div className="profile-details">
         {/* Profile Card */}
         <div className="profileInfo-card">
-          <img
+          <img className="profileinfopic"
             src={userpng}
             alt="Profile"
             style={{
@@ -266,8 +266,7 @@ function ProfileInfo({ profile, entries }) {
                 marginTop: "8px",
                 borderCollapse: "collapse",
                 textAlign: "center",
-                color:"white"
-              }}
+                color:"white"              }}
             >
               <thead style={{ border: "3px solid white" }}>
                 <tr>
