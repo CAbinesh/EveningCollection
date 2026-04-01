@@ -119,6 +119,7 @@ tbody {
   width: 90%;
   height: 1px;
   margin: 20px auto;
+  margin-top: 50px;
   background: #ffff4fa0;
 
   box-shadow:
@@ -223,8 +224,6 @@ tbody {
 .form1 {
   width: 100%;
   height: 100%;
-  margin-top: 100px;
-  margin-bottom: 100px;
   display: flex;
   justify-content: center; /* centers the form horizontally */
   align-items: center;
@@ -233,10 +232,11 @@ tbody {
 .form1 form {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 18px;
   width: 100%;
   max-width: 1000px;
   min-height: 100vh;
+  line-height: 10px;
   margin: auto;
   border-radius: 10px;
   box-sizing: border-box;
@@ -264,10 +264,33 @@ tbody {
   flex-direction: column;
 }
 
-.form-Group label {
-  font-weight: bold;
-  margin-bottom: 5px;
-  text-align: center;
+.form1 label {
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: #ccc;
+}
+
+/* Inputs */
+.form1 input,
+.form1 textarea,
+.form1 select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #2a2a2a;
+  background: #111;
+  color: #fff;
+  box-sizing: border-box;
+  transition: 0.3s;
+}
+
+/* Focus effect */
+.form1 input:focus,
+.form1 textarea:focus,
+.form1 select:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 8px rgba(79, 70, 229, 0.4);
 }
 .full-width {
   grid-column: 1 / -1; /* takes entire row */
@@ -285,13 +308,14 @@ tbody {
   .form1 {
     display: flex;
     justify-content: center;
+    line-height: 5px;
   }
 
   /* Single column grid */
   .form1 form {
     display: grid;
     grid-template-columns: 1fr;
-    width: 100%;
+    width: 90%;
     max-width: 90%;
   }
 
@@ -869,7 +893,6 @@ table {
 
   .auth-container img {
     position: absolute;
-    top: 15px; /* Stick to the top */
     left: 50%; /* Move center horizontally */
     transform: translateX(-50%); /* Shift back half width */
     width: 200px;
@@ -898,9 +921,6 @@ table {
   max-width: 400px;
 }
 @media screen and (max-width: 768px) {
-  .containerAuth video {
-    height: 100dvh;
-  }
   .loginbtn {
     margin-top: 15px;
   }
