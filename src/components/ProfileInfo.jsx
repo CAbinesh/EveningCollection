@@ -90,7 +90,7 @@ function ProfileInfo({ profile, entries }) {
 
   return (
     <div
-      className="wallpaper"
+      className="wallpaper1"
     >
       <h1 className="title">ProfileInfo</h1>
       <button

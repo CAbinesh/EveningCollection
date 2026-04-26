@@ -76,7 +76,7 @@ function AddParty() {
 
   return (
     <div className="AddPartyContainer">
-      <div className="wallpaper">
+      <div className="wallpaper1">
         <img className="logoauths" src={Home} alt="My App Logo" />
         <button
           className="bckbtn"

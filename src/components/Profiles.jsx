@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Home from "../assets/Preview12.png";
+import userImg from "../assets/user-1.png"
 function Profiles() {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
@@ -76,12 +77,12 @@ function Profiles() {
                 key={index}
                 className="profile-card"
                 onClick={() => navigate(`/Profiles/${entry.dcNo}`)}
-                style={{ cursor: "pointer" }}
+                style={{ cursor: "pointer"}}
               >
+                <img src={userImg} style={{width:"100px",height:"100px"}} alt="" />
                 <h2 style={{color:'white'}}>{entry.dcNo}</h2>
-                <h4 style={{ color: "black" }}>{entry.name}</h4>
+                <h4 style={{ color: "white",opacity:"0.5" }}>{entry.name}</h4>
 
-                <h5 className="taptext">Tap to view entries</h5>
               </div>
             ))
         ) : (

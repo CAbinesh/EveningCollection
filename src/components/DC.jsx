@@ -41,7 +41,7 @@ function DC(props) {
   };
 
   return (
-    <div className="wallpaper">
+    <div className="wallpaper1">
       <img className="logoauths" src={Home} alt="My App Logo" />
  <h1 className="title">DC</h1>
       <div className="form">

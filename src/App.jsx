@@ -70,13 +70,13 @@ function App() {
   if (loading)
     return (
       <div className="loader-container">
-<div class="loader">
-  <div class="loader__bar"></div>
-  <div class="loader__bar"></div>
-  <div class="loader__bar"></div>
-  <div class="loader__bar"></div>
-  <div class="loader__bar"></div>
-  <div class="loader__ball"></div>
+<div className="loader">
+  <div className="loader__bar"></div>
+  <div className="loader__bar"></div>
+  <div className="loader__bar"></div>
+  <div className="loader__bar"></div>
+  <div className="loader__bar"></div>
+  <div className="loader__ball"></div>
 </div>
 
       </div>
