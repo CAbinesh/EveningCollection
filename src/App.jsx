@@ -1,6 +1,12 @@
 /* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useEffect, useState } from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
+import {
+  Route,
+  Routes,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
+
 import DC from "./components/DC";
 import Home from "./components/Home";
 import Ledger from "./components/Ledger";
@@ -12,11 +18,72 @@ import Auth from "./components/Auth";
 // ✅ create context
 export const AuthContext = createContext();
 
+function AppRoutes({ user, profiles, entries, fetchData }) {
+  const location = useLocation();
+
+  // ✅ scroll to top on route change
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [location.pathname]);
+
+  return (
+    <Routes>
+      <Route
+        path="/"
+        element={user ? <Home /> : <Navigate to="/auth" replace />}
+      />
+      <Route
+        path="/DC"
+        element={
+          user ? (
+            <DC fetchData={fetchData} />
+          ) : (
+            <Navigate to="/auth" replace />
+          )
+        }
+      />
+      <Route
+        path="/Ledger"
+        element={user ? <Ledger /> : <Navigate to="/auth" replace />}
+      />
+      <Route
+        path="/Profiles"
+        element={
+          user ? (
+            <Profiles profile={profiles} entries={entries} />
+          ) : (
+            <Navigate to="/auth" replace />
+          )
+        }
+      />
+      <Route
+        path="/Profiles/:id"
+        element={
+          user ? (
+            <ProfileInfo profile={profiles} entries={entries} />
+          ) : (
+            <Navigate to="/auth" replace />
+          )
+        }
+      />
+      <Route
+        path="/Addparty"
+        element={user ? <AddParty /> : <Navigate to="/auth" replace />}
+      />
+      <Route
+        path="/Auth"
+        element={user ? <Navigate to="/" replace /> : <Auth />}
+      />
+    </Routes>
+  );
+}
+
 function App() {
-  const [user, setUser] = useState(null); // logged-in user
+  const [user, setUser] = useState(null);
   const [profiles, setProfiles] = useState([]);
   const [entries, setEntries] = useState([]);
   const [loading, setLoading] = useState(true);
+
   const API_URL = import.meta.env.VITE_API_URL;
 
   // fetch live data
@@ -34,11 +101,10 @@ function App() {
     setEntries(entriesData);
   };
 
-  // ✅ fetch logged-in user on app load
+  // fetch logged-in user
   useEffect(() => {
     const initApp = async () => {
       try {
-        // fetch logged-in user first
         const res = await fetch(`${API_URL}/api/me`, {
           method: "GET",
           credentials: "include",
@@ -46,11 +112,10 @@ function App() {
             "Content-Type": "application/json",
           },
         });
+
         if (res.ok) {
           const data = await res.json();
           setUser(data);
-
-          // now fetch live data with the user logged in
           await fetchData();
         } else if (res.status === 401) {
           setUser(null);
@@ -70,69 +135,25 @@ function App() {
   if (loading)
     return (
       <div className="loader-container">
-<div className="loader">
-  <div className="loader__bar"></div>
-  <div className="loader__bar"></div>
-  <div className="loader__bar"></div>
-  <div className="loader__bar"></div>
-  <div className="loader__bar"></div>
-  <div className="loader__ball"></div>
-</div>
-
+        <div className="loader">
+          <div className="loader__bar"></div>
+          <div className="loader__bar"></div>
+          <div className="loader__bar"></div>
+          <div className="loader__bar"></div>
+          <div className="loader__bar"></div>
+          <div className="loader__ball"></div>
+        </div>
       </div>
     );
 
   return (
     <AuthContext.Provider value={{ user, setUser }}>
-      <Routes>
-        <Route
-          path="/"
-          element={user ? <Home /> : <Navigate to="/auth" replace />}
-        />
-        <Route
-          path="/DC"
-          element={
-            user ? (
-              <DC fetchData={fetchData} />
-            ) : (
-              <Navigate to="/auth" replace />
-            )
-          }
-        />
-        <Route
-          path="/Ledger"
-          element={user ? <Ledger /> : <Navigate to="/auth" replace />}
-        />
-
-        <Route
-          path="/Profiles"
-          element={
-            user ? (
-              <Profiles profile={profiles} entries={entries} />
-            ) : (
-              <Navigate to="/auth" replace />
-            )
-          }
-        />
-        <Route
-          path="/Profiles/:id"
-          element={
-            user ? (
-              <ProfileInfo profile={profiles} entries={entries} />
-            ) : (
-              <Navigate to="/auth" replace />
-            )
-          }
-        />
-        <Route
-          path="/Addparty"
-          element={user ? <AddParty /> : <Navigate to="/auth" replace />}
-        />
-        <Route
-          path="/Auth"
-          element={user ? <Navigate to="/" replace /> : <Auth />}
-        />
-      </Routes>
+      <AppRoutes
+        user={user}
+        profiles={profiles}
+        entries={entries}
+        fetchData={fetchData}
+      />
     </AuthContext.Provider>
   );
 }

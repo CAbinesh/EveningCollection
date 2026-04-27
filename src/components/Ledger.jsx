@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Home from "../assets/Preview12.png";
+import { MdOutlineCalendarMonth } from "react-icons/md";
 function Ledger() {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
@@ -54,13 +55,13 @@ function Ledger() {
   if (loading) {
     return (
       <div className="loader-container">
-        <div class="loader">
-          <div class="loader__bar"></div>
-          <div class="loader__bar"></div>
-          <div class="loader__bar"></div>
-          <div class="loader__bar"></div>
-          <div class="loader__bar"></div>
-          <div class="loader__ball"></div>
+        <div className="loader">
+          <div className="loader__bar"></div>
+          <div className="loader__bar"></div>
+          <div className="loader__bar"></div>
+          <div className="loader__bar"></div>
+          <div className="loader__bar"></div>
+          <div className="loader__ball"></div>
         </div>
       </div>
     );
@@ -89,7 +90,7 @@ function Ledger() {
             arrow_back
           </span>
         </button>
-         
+
         <br />
 
         <input
@@ -117,38 +118,60 @@ function Ledger() {
               const entriesForDate = groupedEntries[dateKey];
               const totalAmount = entriesForDate.reduce(
                 (sum, entry) => sum + Number(entry.amount),
-                0
+                0,
               );
               return (
-                <div className="ledgerCard" key={dateKey}>
-                  <h3 className="date">
-                    Date:{" "}
-                    {new Date(dateKey).toLocaleDateString(
-                      undefined,
-                      dateOptions
-                    )}
-                  </h3>
-                  <ul>
-                    {entriesForDate
-                      .sort(
-                        (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
-                      )
-                      .map((entry, idx) => (
-                        <li key={idx}>
-                          {" "}
-                          <span className="ledgertext">
-                            {entry.dcNo || "Deleted Profile"}
-                          </span>{"    "}
-                          
-                          <span className="ledgertext">
-                            ₹{entry.amount.toLocaleString()}
-                          </span>
-                        </li>
-                      ))}
-                  </ul>
-                  <p style={{ fontWeight: "bold", color: "white" }}>
-                    Total: ₹{totalAmount.toLocaleString()}
-                  </p>
+                <div className="MainledgerCard" key={dateKey}>
+                  <div className="SubledgerCard" >
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "18px",
+                      }}
+                    >
+                      <MdOutlineCalendarMonth
+                        style={{
+                          fontSize: "30px",
+                          backgroundColor: "blue",
+                          borderRadius: "10px",
+                          padding: "2px",
+                        }}
+                      />
+                      <h3 className="date">
+                        Date:{" "}
+                        {new Date(dateKey).toLocaleDateString(
+                          undefined,
+                          dateOptions,
+                        )}
+                      </h3>
+                    </div>
+                  </div>
+
+                  <div className="ledgerCard">
+                    <ul>
+                      {entriesForDate
+                        .sort(
+                          (a, b) =>
+                            new Date(a.createdAt) - new Date(b.createdAt),
+                        )
+                        .map((entry, idx) => (
+                          <li key={idx}>
+                            {" "}
+                            <span className="ledgertext">
+                              {entry.dcNo || "Deleted Profile"}
+                            </span>
+                            {"    "}
+                            <span className="ledgertext">
+                              ₹{entry.amount.toLocaleString()}
+                            </span>
+                          </li>
+                        ))}
+                    </ul>
+                    <p style={{ fontWeight: "bold", color: "white" }}>
+                      Total: ₹{totalAmount.toLocaleString()}
+                    </p>
+                  </div>
                 </div>
               );
             })

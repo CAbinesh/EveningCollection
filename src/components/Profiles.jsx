@@ -55,6 +55,7 @@ function Profiles() {
             
             position: "sticky",
             top: 0,
+            fontSize:"15px",
             margin: "10px 0",
             marginLeft: "15px",
             zIndex: "999",
