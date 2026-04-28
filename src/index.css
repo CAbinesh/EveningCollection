@@ -1635,7 +1635,7 @@ table {
 }
 @media screen and (max-width: 767px) {
   .AddPartyContainer {
-    min-height: 180vh;
+    min-height: 100vh;
   }
 }
 .wallpaper1 {
