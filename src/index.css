@@ -868,7 +868,11 @@ button {
   border: 2px solid transparent;
   color: white;
 }
-
+@media (max-width: 640px) {
+  .ledgerCard {
+    width: 300px;
+  }
+}
 .MainledgerCard {
   display: flex;
   flex-direction: column;
