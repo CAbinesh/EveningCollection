@@ -12,7 +12,13 @@ function ProfileInfo({ profile, entries }) {
 
   // Find the user by their unique identifier (dcNo)
   const user = profile.find((p) => String(p.dcNo) === String(id));
-
+if (!user) {
+    return (
+      <div style={{ padding: "20px", textAlign: "center" }}>
+        <h2>User not found or loading...</h2>
+      </div>
+    );
+  }
   // Filter entries that belong to this user
   const matchedEntries = entries.filter(
     (e) => String(e.dcNo) === String(user.dcNo)
@@ -22,13 +28,7 @@ function ProfileInfo({ profile, entries }) {
     0
   );
   const balance = Number(user.loanAmount) - total;
-  if (!user) {
-    return (
-      <div style={{ padding: "20px", textAlign: "center" }}>
-        <h2>User not found or loading...</h2>
-      </div>
-    );
-  }
+  
 
   const today = new Date();
   const endDate = new Date(user.endDate);
