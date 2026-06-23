@@ -133,6 +133,14 @@ app.post("/api/logout", (req, res) => {
   res.clearCookie("token", { httpOnly: true, secure: true, sameSite: "none" });
   res.json({ message: "Logged out" });
 });
+// Total users count
+app.get("/api/profiles/count",async (req,res)=>{
+  try {
+  const count= await Profile.countDocuments();
+  res.json({count})
+} catch (error) {
+  res.status(500).json({error})
+}})
 
 // ===== CRUD for Profile =====
 app.get("/api/data", middleware, authLimiter, async (req, res) => {

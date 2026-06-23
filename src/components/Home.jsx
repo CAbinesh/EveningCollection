@@ -8,6 +8,8 @@ import { SiBookstack } from "react-icons/si";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { IoMdPersonAdd } from "react-icons/io";
 import { AiOutlinePoweroff } from "react-icons/ai";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
 import { AuthContext } from "../App";
 
 function Home() {
@@ -16,12 +18,38 @@ function Home() {
   const API_URL = import.meta.env.VITE_API_URL;
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const [time, setTime] = useState(new Date());
+  const [date, setDate] = useState(new Date());
+  const [totalUsers, setTotalUsers] = useState(0);
+  const quotes = [
+    "Success is the sum of small efforts repeated daily.",
+    "Stay consistent. Great things take time.",
+    "Small progress is still progress.",
+    "Discipline beats motivation.",
+    "Focus on progress, not perfection.",
+    "Every day is a chance to improve.",
+  ];
+
+  const quoteOfTheDay = quotes[new Date().getDate() % quotes.length];
   useEffect(() => {
     const interval = setInterval(() => {
       setTime(new Date());
     }, 1000);
 
     return () => clearInterval(interval);
+  }, []);
+  useEffect(() => {
+    fetch(`${API_URL}/api/profiles/count`, {
+      credentials: "include",
+    })
+      .then((res) => {
+        console.log("Status:", res.status);
+        return res.json();
+      })
+      .then((data) => {
+        console.log("Response:", data);
+        setTotalUsers(data.count);
+      })
+      .catch((err) => console.error("Fetch Error:", err));
   }, []);
   const handleLogout = async () => {
     //   const confirmed = window.confirm("Are you sure you want to logout?");
@@ -57,6 +85,7 @@ function Home() {
           {" - "}[{time.toLocaleTimeString("en-IN")}]
         </div>
       </div>
+
       <div className="greetBox">
         <h4 style={{ color: "orange" }}>Good To see You 👋</h4>
         <h1 className="font1">Welcome... </h1>
@@ -69,10 +98,9 @@ function Home() {
         <div className="exploreHeader">
           <div className="exploreLeft">
             <img src="/dashboard.png" alt="explore icon" />
-           <h2 className="ddh2">Dashboard</h2>
+            <h2 className="ddh2">Dashboard</h2>
           </div>
         </div>
-       
       </div>
       <div className="maincontainer">
         <div className="btn1" onClick={() => navigate("/DC")}>
@@ -124,8 +152,16 @@ function Home() {
           </div>
         </div>
         <div className="btn5"></div>
-        <div className="btnLogout" onClick={() => setShowLogoutConfirm(true)}style={{display:"flex",flexDirection:"column"}}>
-        <div> <AiOutlinePoweroff style={{fontSize:"35px"}} /></div> Logout
+        <div
+          className="btnLogout"
+          onClick={() => setShowLogoutConfirm(true)}
+          style={{ display: "flex", flexDirection: "column" }}
+        >
+          <div>
+            {" "}
+            <AiOutlinePoweroff style={{ fontSize: "35px" }} />
+          </div>{" "}
+          Logout
         </div>
 
         {showLogoutConfirm && (
@@ -157,6 +193,54 @@ function Home() {
         )}
       </div>
       <div className="centerLine1"></div>
+
+      {/* Features */}
+
+      <div>
+        <div className="exploreHeader">
+          <div className="exploreLeft">
+            <img src="/glitter.png" alt="explore icon" />
+            <h2>Much Mores</h2>
+          </div>
+        </div>
+        <div className="featuresContainer">
+          <div className="calbtn1">
+            <div className="calendar-card">
+              <h3>Calendar</h3>
+              <Calendar onChange={setDate} value={date} />
+            </div>
+          </div>
+          <div className="calbtn2">
+            <div className="stat-card">
+              <img
+                style={{ width: "140px", height: "140px" }}
+                src="/teamwork.png"
+                alt="explore icon"
+              />
+              <h4>Total Users</h4>
+              <h2>{totalUsers}</h2>
+            </div>
+          </div>
+          <div className="calbtn3">
+            <div className="quote-card">
+              <div className="quoteImg">
+                <img
+                  style={{ width: "80px", height: "80px" }}
+                  src="/quote.png"
+                  alt="explore icon"
+                />
+
+                <h3>Daily Quote</h3>
+              </div>
+              <p>"{quoteOfTheDay}"</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="centerLine2"></div>
+      {/*  */}
+
       <div className="Trylink">
         <div className="exploreHeader">
           <div className="exploreLeft">
@@ -208,6 +292,7 @@ function Home() {
         </div>
       </div>
       <div className="centerLine2"></div>
+
       <div className="footer">© 2025 MyWebsite. All rights reserved.</div>
       <div className="subFooter">
         <h4>⁕ PrivacyPolicy</h4>
