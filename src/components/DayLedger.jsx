@@ -1,15 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Home from "../assets/Preview12.png";
+import { useNavigate, useParams } from "react-router-dom";
 import { MdOutlineCalendarMonth } from "react-icons/md";
-function Ledger() {
+import Home from "../assets/Preview12.png";
+
+function DayLedger() {
   const navigate = useNavigate();
+  const { year, month, day } = useParams();
   const [search, setSearch] = useState("");
   const [allEntries, setAllEntries] = useState([]);
   const [loading, setLoading] = useState(true);
   const API_URL = import.meta.env.VITE_API_URL;
-
-  // ✅ Fetch all ledger entries from backend
+const monthNumber = String(Number(month)).padStart(2, "0");
+const dayNumber = String(Number(day)).padStart(2, "0");
+const dateKey = `${year}-${monthNumber}-${dayNumber}`;
+const selectedDate = new Date(
+  Number(year),
+  Number(monthNumber) - 1,
+  Number(dayNumber),
+);
   useEffect(() => {
     const fetchLedger = async () => {
       try {
@@ -26,37 +34,30 @@ function Ledger() {
     fetchLedger();
   }, [API_URL]);
 
-  // ✅ Filter by name, date, or amount
-  const filteredEntries = allEntries.filter((entry) => {
-    const entryDate = new Date(entry.date).toISOString().split("T")[0];
-    return (
-      (entry.profileName &&
-        entry.profileName.toLowerCase().includes(search.toLowerCase())) ||
-      entryDate.includes(search) ||
-      (entry.dcNo && entry.dcNo.toString().includes(search))
-    );
-  });
+  const entriesForDate = allEntries
+    .filter((entry) => {
+      const entryDate = new Date(entry.date).toISOString().split("T")[0];
+      return (
+        entryDate === dateKey &&
+        ((entry.profileName &&
+          entry.profileName.toLowerCase().includes(search.toLowerCase())) ||
+          entryDate.includes(search) ||
+          (entry.dcNo && entry.dcNo.toString().includes(search)))
+      );
+    })
+    .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
 
-  // // ✅ Group by date
-  // const groupedEntries = filteredEntries.reduce((acc, entry) => {
-  //   const dateKey = new Date(entry.date).toISOString().split("T")[0];
-  //   if (!acc[dateKey]) acc[dateKey] = [];
-  //   acc[dateKey].push(entry);
-  //   return acc;
-  // }, {});
+  const totalAmount = entriesForDate.reduce(
+    (sum, entry) => sum + Number(entry.amount),
+    0,
+  );
 
-  // const dateOptions = {
-  //   weekday: "long",
-  //   year: "numeric",
-  //   month: "long",
-  //   day: "numeric",
-  // };
-
-  const years = [
-    ...new Set(
-      filteredEntries.map((entry) => new Date(entry.date).getFullYear()),
-    ),
-  ].sort((a, b) => a - b);
+  const dateOptions = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
 
   if (loading) {
     return (
@@ -76,7 +77,6 @@ function Ledger() {
   return (
     <div className="wallpaper1" style={{ minHeight: "100vh" }}>
       <img className="logoauths" src={Home} alt="My App Logo" />
-
       <h1 className="title">Ledger</h1>
 
       <div
@@ -114,34 +114,57 @@ function Ledger() {
           placeholder="🔎 Search by name,dcNo,or date (YYYY-MM-DD)..."
         />
       </div>
+
       <div className="ledgerContainer">
-        {years.length == 0 ? (
-          <p>No entries found</p>
+        {entriesForDate.length === 0 ? (
+          <p style={{ fontStyle: "italic" }}>No entries found.</p>
         ) : (
-          years.map((year) => (
-            <button
-              className="MainledgerCard"
-              key={year}
-              type="button"
-              onClick={() => navigate(`/ledger/${year}`)}
-              style={{ cursor: "pointer", textAlign: "left" }}
-            >
-              <div className="SubledgerCard">
-                <div
+          <div className="MainledgerCard">
+            <div className="SubledgerCard">
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "18px",
+                }}
+              >
+                <MdOutlineCalendarMonth
                   style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "18px",
+                    fontSize: "30px",
+                    backgroundColor: "blue",
+                    borderRadius: "10px",
+                    padding: "2px",
                   }}
-                >
-                  {/* <FaFolder style={{ fontSize: "34px", color: "#f3c84b" }} /> */}
-                  <h3 className="date">{year}</h3>
-                </div>
+                />
+                <h3 className="date">
+                  Date:{" "}
+                  {selectedDate.toLocaleDateString(undefined, dateOptions)}
+                </h3>
               </div>
-            </button>
-          ))
+            </div>
+
+            <div className="ledgerCard">
+              <ul>
+                {entriesForDate.map((entry, idx) => (
+                  <li key={idx}>
+                    <span className="ledgertext">
+                      {entry.dcNo || "Deleted Profile"}
+                    </span>
+                    {"    "}
+                    <span className="ledgertext">
+                      ₹{Number(entry.amount).toLocaleString()}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <p style={{ fontWeight: "bold", color: "white" }}>
+                Total: ₹{totalAmount.toLocaleString()}
+              </p>
+            </div>
+          </div>
         )}
       </div>
+
       <div className="centerLine2"></div>
       <div className="footer">© 2025 MyWebsite. All rights reserved.</div>
       <div className="subFooter">
@@ -154,4 +177,4 @@ function Ledger() {
   );
 }
 
-export default Ledger;
+export default DayLedger;

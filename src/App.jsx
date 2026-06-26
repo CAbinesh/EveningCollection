@@ -1,15 +1,13 @@
 /* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useEffect, useState } from "react";
-import {
-  Route,
-  Routes,
-  Navigate,
-  useLocation,
-} from "react-router-dom";
+import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 
 import DC from "./components/DC";
 import Home from "./components/Home";
 import Ledger from "./components/Ledger";
+import Year from "./components/Year";
+import Month from "./components/Month";
+import DayLedger from "./components/DayLedger";
 import Profiles from "./components/Profiles";
 import AddParty from "./components/AddParty";
 import ProfileInfo from "./components/ProfileInfo";
@@ -35,16 +33,24 @@ function AppRoutes({ user, profiles, entries, fetchData }) {
       <Route
         path="/DC"
         element={
-          user ? (
-            <DC fetchData={fetchData} />
-          ) : (
-            <Navigate to="/auth" replace />
-          )
+          user ? <DC fetchData={fetchData} /> : <Navigate to="/auth" replace />
         }
       />
       <Route
         path="/Ledger"
         element={user ? <Ledger /> : <Navigate to="/auth" replace />}
+      />
+      <Route
+        path="/Ledger/:year"
+        element={user ? <Year /> : <Navigate to="/auth" replace />}
+      />
+      <Route
+        path="/Ledger/:year/:month"
+        element={user ? <Month /> : <Navigate to="/auth" replace />}
+      />
+      <Route
+        path="/Ledger/:year/:month/:day"
+        element={user ? <DayLedger /> : <Navigate to="/auth" replace />}
       />
       <Route
         path="/Profiles"

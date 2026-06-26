@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { FaFolder } from "react-icons/fa";
 import Home from "../assets/Preview12.png";
-import { MdOutlineCalendarMonth } from "react-icons/md";
-function Ledger() {
+
+function Year() {
   const navigate = useNavigate();
+  const { year } = useParams();
   const [search, setSearch] = useState("");
   const [allEntries, setAllEntries] = useState([]);
   const [loading, setLoading] = useState(true);
   const API_URL = import.meta.env.VITE_API_URL;
 
-  // ✅ Fetch all ledger entries from backend
   useEffect(() => {
     const fetchLedger = async () => {
       try {
@@ -26,37 +27,25 @@ function Ledger() {
     fetchLedger();
   }, [API_URL]);
 
-  // ✅ Filter by name, date, or amount
   const filteredEntries = allEntries.filter((entry) => {
     const entryDate = new Date(entry.date).toISOString().split("T")[0];
     return (
-      (entry.profileName &&
+      new Date(entry.date).getFullYear().toString() === year &&
+      ((entry.profileName &&
         entry.profileName.toLowerCase().includes(search.toLowerCase())) ||
-      entryDate.includes(search) ||
-      (entry.dcNo && entry.dcNo.toString().includes(search))
+        entryDate.includes(search) ||
+        (entry.dcNo && entry.dcNo.toString().includes(search)))
     );
   });
 
-  // // ✅ Group by date
-  // const groupedEntries = filteredEntries.reduce((acc, entry) => {
-  //   const dateKey = new Date(entry.date).toISOString().split("T")[0];
-  //   if (!acc[dateKey]) acc[dateKey] = [];
-  //   acc[dateKey].push(entry);
-  //   return acc;
-  // }, {});
-
-  // const dateOptions = {
-  //   weekday: "long",
-  //   year: "numeric",
-  //   month: "long",
-  //   day: "numeric",
-  // };
-
-  const years = [
-    ...new Set(
-      filteredEntries.map((entry) => new Date(entry.date).getFullYear()),
-    ),
+  const months = [
+    ...new Set(filteredEntries.map((entry) => new Date(entry.date).getMonth())),
   ].sort((a, b) => a - b);
+
+  const monthName = (monthIndex) =>
+    new Date(Number(year), monthIndex, 1).toLocaleDateString(undefined, {
+      month: "long",
+    });
 
   if (loading) {
     return (
@@ -76,8 +65,7 @@ function Ledger() {
   return (
     <div className="wallpaper1" style={{ minHeight: "100vh" }}>
       <img className="logoauths" src={Home} alt="My App Logo" />
-
-      <h1 className="title">Ledger</h1>
+      <h1 className="title">{year}</h1>
 
       <div
         className="sticky-box"
@@ -114,34 +102,40 @@ function Ledger() {
           placeholder="🔎 Search by name,dcNo,or date (YYYY-MM-DD)..."
         />
       </div>
+
       <div className="ledgerContainer">
-        {years.length == 0 ? (
-          <p>No entries found</p>
+        {months.length === 0 ? (
+          <p style={{ fontStyle: "italic" }}>No entries found.</p>
         ) : (
-          years.map((year) => (
-            <button
-              className="MainledgerCard"
-              key={year}
-              type="button"
-              onClick={() => navigate(`/ledger/${year}`)}
-              style={{ cursor: "pointer", textAlign: "left" }}
-            >
-              <div className="SubledgerCard">
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "18px",
-                  }}
-                >
-                  {/* <FaFolder style={{ fontSize: "34px", color: "#f3c84b" }} /> */}
-                  <h3 className="date">{year}</h3>
+          months.map((month) => {
+            const monthNumber = String(month + 1).padStart(2, "0");
+
+            return (
+              <button
+                className="MainledgerCard"
+                key={month}
+                type="button"
+                onClick={() => navigate(`/ledger/${year}/${monthNumber}`)}
+                style={{ cursor: "pointer", textAlign: "left" }}
+              >
+                <div className="SubledgerCard">
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "18px",
+                    }}
+                  >
+                    <FaFolder style={{ fontSize: "34px", color: "#f3c84b" }} />
+                    <h3 className="date">{monthName(month)}</h3>
+                  </div>
                 </div>
-              </div>
-            </button>
-          ))
+              </button>
+            );
+          })
         )}
       </div>
+
       <div className="centerLine2"></div>
       <div className="footer">© 2025 MyWebsite. All rights reserved.</div>
       <div className="subFooter">
@@ -154,4 +148,4 @@ function Ledger() {
   );
 }
 
-export default Ledger;
+export default Year;
