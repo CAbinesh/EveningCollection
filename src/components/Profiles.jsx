@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Home from "../assets/Preview12.png";
-import userImg from "../assets/user-1.png";
+import userImg from "../assets/user1.png";
 function Profiles() {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");

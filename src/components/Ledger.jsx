@@ -134,7 +134,7 @@ function Ledger() {
                     gap: "18px",
                   }}
                 >
-                  {/* <FaFolder style={{ fontSize: "34px", color: "#f3c84b" }} /> */}
+                  <span style={{ fontSize: "34px"}}>📂</span> 
                   <h3 className="date">{year}</h3>
                 </div>
               </div>

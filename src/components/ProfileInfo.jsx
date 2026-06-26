@@ -1,5 +1,5 @@
 import React from "react";
-import userpng from "../assets/user.png";
+import userpng from "../assets/user1.png";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
