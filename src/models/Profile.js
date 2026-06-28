@@ -14,7 +14,8 @@ const ProfileSchema=new mongoose.Schema({
     interest:{type:String,required:true},
     dcEntries: {
     type: [DCEntrySchema],
-    default: []
+    default: [],
+     createdAt: { type: Date, default: Date.now },
   }
 })
 export default mongoose.model('Profile',ProfileSchema)

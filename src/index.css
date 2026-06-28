@@ -1727,7 +1727,7 @@ table {
   border-radius: 20px;
 }
 .sticky {
-  width: 15%;
+  width: 10%;
   color: white;
   padding: 10px 25px;
   border-radius: 10px;
@@ -1746,7 +1746,7 @@ table {
 /* hover expand */
 .sticky:hover,
 .sticky:focus {
-  width: 200px;
+  width: 100px;
 }
 
 /* active click effect */
@@ -1755,7 +1755,7 @@ table {
 }
 @media screen and (max-width: 768px) {
   .sticky {
-    width: 220px;
+    width: 100px;
   }
 }
 .splContainer {
@@ -2028,4 +2028,76 @@ table {
 }
 .quote-card p {
   font-size: 20px;
+}
+/* CSS Variables */
+/* CSS Variables */
+/* CSS Variables */
+/* CSS Variables */
+:root {
+  --select-width: 130px;
+  --select-font-size: 14px;
+  --select-pad-y: 10px;
+  --select-radius: 8px;
+  --select-bg: #000000a8;
+  --select-color: #feffff;
+  --select-border: 2px solid #3b82f6;
+  --select-focus-color: #1d4ed8;
+}
+
+/* Wrapper */
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+  width: var(--select-width);
+}
+
+/* Select */
+.custom-select {
+  width: 100%;
+  padding: var(--select-pad-y) 38px var(--select-pad-y) 38px;
+  font-size: var(--select-font-size);
+  border: var(--select-border);
+  border-radius: var(--select-radius);
+  background: var(--select-bg);
+  color: var(--select-color);
+  cursor: pointer;
+  outline: none;
+
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  transition: 0.2s;
+}
+
+.custom-select:focus {
+  border-color: var(--select-focus-color);
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.2);
+}
+
+/* Filter Icon */
+.filter-icon {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  color:rgb(186, 189, 8);
+  font-size: 14px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Arrow */
+.select-arrow {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: #6b7280;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

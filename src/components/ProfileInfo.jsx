@@ -112,6 +112,7 @@ function ProfileInfo({ profile = [], entries = [], dataLoading }) {
       </span>
       
       </button>
+      
 
       <div className="profile-details">
         {/* Profile Card */}
