@@ -3,22 +3,31 @@ import userpng from "../assets/user1.png";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-function ProfileInfo({ profile, entries }) {
+function ProfileInfo({ profile = [], entries = [], dataLoading }) {
   const { id } = useParams();
   const navigate = useNavigate();
   const API_URL = import.meta.env.VITE_API_URL;
-    const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
-  
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
-  // Find the user by their unique identifier (dcNo)
-  const user = profile.find((p) => String(p.dcNo) === String(id));
-if (!user) {
+  if (dataLoading || !profile.length) {
     return (
-      <div style={{ padding: "20px", textAlign: "center" }}>
-        <h2>User not found or loading...</h2>
+      <div className="loader-container">
+        <h2 style={{ color: "white" }}>Loading profile...</h2>
       </div>
     );
   }
+
+  const user = profile.find((p) => String(p.dcNo) === String(id));
+
+  if (!user) {
+    return (
+      <div style={{ padding: "20px", textAlign: "center" }}>
+        <h2>Profile not found</h2>
+        <button onClick={() => navigate(-1)}>Back</button>
+      </div>
+    );
+  }
+
   // Filter entries that belong to this user
   const matchedEntries = entries.filter(
     (e) => String(e.dcNo) === String(user.dcNo)

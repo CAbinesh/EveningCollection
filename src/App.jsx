@@ -1,5 +1,10 @@
 /* eslint-disable react-refresh/only-export-components */
-import React, { createContext, useEffect, useState } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 
 import DC from "./components/DC";
@@ -13,13 +18,15 @@ import AddParty from "./components/AddParty";
 import ProfileInfo from "./components/ProfileInfo";
 import Auth from "./components/Auth";
 
-// ✅ create context
 export const AuthContext = createContext();
 
-function AppRoutes({ user, profiles, entries, fetchData }) {
+function ProtectedRoute({ user, children }) {
+  return user ? children : <Navigate to="/auth" replace />;
+}
+
+function AppRoutes({ user, profiles, entries, dataLoading, fetchData }) {
   const location = useLocation();
 
-  // ✅ scroll to top on route change
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [location.pathname]);
@@ -28,58 +35,95 @@ function AppRoutes({ user, profiles, entries, fetchData }) {
     <Routes>
       <Route
         path="/"
-        element={user ? <Home /> : <Navigate to="/auth" replace />}
+        element={
+          <ProtectedRoute user={user}>
+            <Home />
+          </ProtectedRoute>
+        }
       />
+
       <Route
         path="/DC"
         element={
-          user ? <DC fetchData={fetchData} /> : <Navigate to="/auth" replace />
+          <ProtectedRoute user={user}>
+            <DC fetchData={fetchData} />
+          </ProtectedRoute>
         }
       />
+
       <Route
         path="/Ledger"
-        element={user ? <Ledger /> : <Navigate to="/auth" replace />}
+        element={
+          <ProtectedRoute user={user}>
+            <Ledger />
+          </ProtectedRoute>
+        }
       />
+
       <Route
         path="/Ledger/:year"
-        element={user ? <Year /> : <Navigate to="/auth" replace />}
+        element={
+          <ProtectedRoute user={user}>
+            <Year />
+          </ProtectedRoute>
+        }
       />
+
       <Route
         path="/Ledger/:year/:month"
-        element={user ? <Month /> : <Navigate to="/auth" replace />}
+        element={
+          <ProtectedRoute user={user}>
+            <Month />
+          </ProtectedRoute>
+        }
       />
+
       <Route
         path="/Ledger/:year/:month/:day"
-        element={user ? <DayLedger /> : <Navigate to="/auth" replace />}
+        element={
+          <ProtectedRoute user={user}>
+            <DayLedger />
+          </ProtectedRoute>
+        }
       />
+
       <Route
         path="/Profiles"
         element={
-          user ? (
+          <ProtectedRoute user={user}>
             <Profiles profile={profiles} entries={entries} />
-          ) : (
-            <Navigate to="/auth" replace />
-          )
+          </ProtectedRoute>
         }
       />
+
       <Route
         path="/Profiles/:id"
         element={
-          user ? (
-            <ProfileInfo profile={profiles} entries={entries} />
-          ) : (
-            <Navigate to="/auth" replace />
-          )
+          <ProtectedRoute user={user}>
+            <ProfileInfo
+              profile={profiles}
+              entries={entries}
+              dataLoading={dataLoading}
+            />
+          </ProtectedRoute>
         }
       />
+
       <Route
         path="/Addparty"
-        element={user ? <AddParty /> : <Navigate to="/auth" replace />}
+        element={
+          <ProtectedRoute user={user}>
+            <AddParty />
+          </ProtectedRoute>
+        }
       />
+
       <Route
-        path="/Auth"
+        path="/auth"
         element={user ? <Navigate to="/" replace /> : <Auth />}
       />
+
+      <Route path="*" element={<Navigate to={user ? "/" : "/auth"} replace />} />
     </Routes>
   );
 }
@@ -89,56 +133,80 @@ function App() {
   const [profiles, setProfiles] = useState([]);
   const [entries, setEntries] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [dataLoading, setDataLoading] = useState(false);
 
   const API_URL = import.meta.env.VITE_API_URL;
 
-  // fetch live data
-  const fetchData = async () => {
-    const profileRes = await fetch(`${API_URL}/api/data`, {
-      credentials: "include",
-    });
-    const profileData = await profileRes.json();
-    setProfiles(profileData);
+  const fetchData = useCallback(async () => {
+    if (!API_URL) {
+      throw new Error("VITE_API_URL is missing");
+    }
 
-    const entriesRes = await fetch(`${API_URL}/api/dcEntries`, {
-      credentials: "include",
-    });
-    const entriesData = await entriesRes.json();
-    setEntries(entriesData);
-  };
+    setDataLoading(true);
 
-  // fetch logged-in user
+    try {
+      const [profileRes, entriesRes] = await Promise.all([
+        fetch(`${API_URL}/api/data`, {
+          credentials: "include",
+        }),
+        fetch(`${API_URL}/api/dcEntries`, {
+          credentials: "include",
+        }),
+      ]);
+
+      if (!profileRes.ok) {
+        throw new Error(`Profile fetch failed: ${profileRes.status}`);
+      }
+
+      if (!entriesRes.ok) {
+        throw new Error(`Entries fetch failed: ${entriesRes.status}`);
+      }
+
+      const profileData = await profileRes.json();
+      const entriesData = await entriesRes.json();
+
+      setProfiles(Array.isArray(profileData) ? profileData : []);
+      setEntries(Array.isArray(entriesData) ? entriesData : []);
+    } finally {
+      setDataLoading(false);
+    }
+  }, [API_URL]);
+
   useEffect(() => {
     const initApp = async () => {
       try {
+        if (!API_URL) {
+          throw new Error("VITE_API_URL is missing");
+        }
+
         const res = await fetch(`${API_URL}/api/me`, {
           method: "GET",
           credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
         });
 
         if (res.ok) {
           const data = await res.json();
           setUser(data);
           await fetchData();
-        } else if (res.status === 401) {
+        } else {
           setUser(null);
+          setProfiles([]);
+          setEntries([]);
         }
       } catch (err) {
-        console.error(err, "in app.jsx");
+        console.error(err, "in App.jsx");
         setUser(null);
+        setProfiles([]);
+        setEntries([]);
       } finally {
         setLoading(false);
       }
     };
 
     initApp();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [API_URL, fetchData]);
 
-  if (loading)
+  if (loading) {
     return (
       <div className="loader-container">
         <div className="loader">
@@ -151,13 +219,24 @@ function App() {
         </div>
       </div>
     );
+  }
 
   return (
-    <AuthContext.Provider value={{ user, setUser }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        setUser,
+        fetchData,
+        profiles,
+        entries,
+        dataLoading,
+      }}
+    >
       <AppRoutes
         user={user}
         profiles={profiles}
         entries={entries}
+        dataLoading={dataLoading}
         fetchData={fetchData}
       />
     </AuthContext.Provider>
