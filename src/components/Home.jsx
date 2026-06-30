@@ -17,7 +17,6 @@ function Home() {
   const { setUser } = useContext(AuthContext);
   const API_URL = import.meta.env.VITE_API_URL;
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
-  const [time, setTime] = useState(new Date());
   const [date, setDate] = useState(new Date());
   const [totalUsers, setTotalUsers] = useState(0);
   const quotes = [
@@ -30,13 +29,7 @@ function Home() {
   ];
 
   const quoteOfTheDay = quotes[new Date().getDate() % quotes.length];
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTime(new Date());
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
+  
   useEffect(() => {
     fetch(`${API_URL}/api/profiles/count`, {
       credentials: "include",
@@ -50,7 +43,7 @@ function Home() {
         setTotalUsers(data.count);
       })
       .catch((err) => console.error("Fetch Error:", err));
-  }, []);
+  }, [API_URL]);
   const handleLogout = async () => {
     //   const confirmed = window.confirm("Are you sure you want to logout?");
     // if (!confirmed) return;
@@ -75,15 +68,7 @@ function Home() {
           style={{ height: "90px", width: "90px" }}
         />
         <h1 className="nametitle">Evening Collection</h1>
-        <div className="date-Time">
-          {time.toLocaleDateString("en-IN", {
-            weekday: "short",
-            day: "2-digit",
-            month: "short",
-            year: "numeric",
-          })}
-          {" - "}[{time.toLocaleTimeString("en-IN")}]
-        </div>
+       
       </div>
 
       <div className="greetBox">
